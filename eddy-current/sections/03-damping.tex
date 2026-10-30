@@ -1,0 +1,289 @@
+%======================================================================
+%  03 电磁阻尼
+%======================================================================
+\section{电磁阻尼}
+
+\subsection{实验观察}
+
+\begin{shiyan}[实验1　阻尼摆]
+\noindent\begin{minipage}[c]{0.5\linewidth}
+用铝板做成摆锤，让它在电磁铁（或蹄形磁铁）的两极间摆动。
+\begin{itemize}[leftmargin=1.4em,label=\textbullet]
+  \item 两极间无磁场时，铝板能摆动很长时间；
+  \item 两极间有磁场时，实心铝板（图甲）很快就停下来；
+  \item 换成开有许多缝隙的梳状铝板（图乙），摆动时间明显变长。
+\end{itemize}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.78]
+\def\pend#1#2{% #1: xshift  #2: 是否开缝
+  \begin{scope}[xshift=#1]
+  \fill[pattern=north east lines,pattern color=gray] (-0.5,2.6) rectangle (0.5,2.8);
+  \draw[line width=0.6pt] (-0.5,2.6) -- (0.5,2.6);
+  % 磁场区域
+  \fill[Bline!7] (-0.75,-0.55) rectangle (0.75,0.55);
+  \draw[Bline!60,dashed] (-0.75,-0.55) rectangle (0.75,0.55);
+  \foreach \x in {-0.5,0,0.5} \foreach \y in {-0.3,0.3} \pic at (\x,\y) {Bin};
+  % 摆杆和摆锤（偏离平衡位置）
+  \begin{scope}[rotate around={22:(0,2.6)}]
+    \draw[line width=0.9pt] (0,2.6) -- (0,0.55);
+    \fill[alu,opacity=0.85] (-0.6,0.55) -- (0.6,0.55) -- (0.6,-0.45) -- (-0.6,-0.45) -- cycle;
+    \draw[line width=0.6pt] (-0.6,0.55) -- (0.6,0.55) -- (0.6,-0.45) -- (-0.6,-0.45) -- cycle;
+    \ifnum#2=1
+      \foreach \x in {-0.4,-0.2,...,0.41} \draw[white,line width=1.6pt] (\x,-0.45) -- (\x,0.35);
+      \foreach \x in {-0.4,-0.2,...,0.41} \draw[line width=0.3pt] (\x-0.04,-0.45) -- (\x-0.04,0.35) -- (\x+0.04,0.35) -- (\x+0.04,-0.45);
+    \fi
+  \end{scope}
+  \draw[->,gray,line width=0.6pt] (0,2.6) ++(-66:3.45) arc (-66:-112:3.45);
+  \end{scope}}
+\pend{0cm}{0}
+\pend{3.2cm}{1}
+\node[font=\small] at (0,-1.1) {甲\ 实心铝板};
+\node[font=\small] at (3.2,-1.1) {乙\ 梳状铝板};
+\end{tikzpicture}
+\captionof{figure}{阻尼摆}\label{fig:pendulum}
+\end{minipage}
+\end{shiyan}
+
+\begin{shiyan}[实验2　强磁体在金属管中下落]
+\noindent\begin{minipage}[c]{0.6\linewidth}
+把一个圆柱形强磁体分别从竖直放置的、长度和内径都相同的\textbf{塑料管}和\textbf{铜管}（或铝管）上端由静止释放。
+\begin{itemize}[leftmargin=1.4em,label=\textbullet]
+  \item 在塑料管中，磁体很快落下（近似自由落体）；
+  \item 在铜管中，磁体下落明显变慢，最终几乎匀速下落；
+  \item 把强磁体换成同样大小的\textbf{普通铁块}（无磁性），它在铜管中仍很快落下；
+  \item 铜管越厚（电阻越小），磁体下落越慢；沿铜管开一条竖直的长缝，磁体下落明显变快。
+\end{itemize}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.37\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.85]
+  % 管壁
+  \fill[copper!60] (-0.85,-1.9) rectangle (-0.6,2.0);
+  \fill[copper!60] (0.6,-1.9) rectangle (0.85,2.0);
+  % 磁体（N 极向下）
+  \fill[blue!55] (-0.4,0.05) rectangle (0.4,0.55);
+  \fill[red!65] (-0.4,-0.45) rectangle (0.4,0.05);
+  \node[white,font=\scriptsize\bfseries] at (0,0.3) {S};
+  \node[white,font=\scriptsize\bfseries] at (0,-0.2) {N};
+  % 涡流：下方俯视逆时针，上方俯视顺时针
+  \foreach \y in {-1.05,-1.55} {\pic at (-0.725,\y) {Iout}; \pic at (0.725,\y) {Iin};}
+  \foreach \y in {1.15,1.65} {\pic at (-0.725,\y) {Iin}; \pic at (0.725,\y) {Iout};}
+  % 速度与阻力
+  \draw[vel] (0.15,-0.5) -- (0.15,-1.15) node[right,font=\footnotesize] {$v$};
+  \draw[force] (-0.15,0.55) -- (-0.15,1.25) node[left,font=\footnotesize] {$F$};
+  \node[font=\scriptsize,align=center] at (1.75,1.4) {远离处\\“去留”};
+  \node[font=\scriptsize,align=center] at (1.75,-1.3) {靠近处\\“来拒”};
+  \node[font=\scriptsize] at (0,-2.25) {铜管（纵剖面）};
+\end{tikzpicture}
+\captionof{figure}{磁体在铜管中下落}\label{fig:tube}
+\end{minipage}
+\end{shiyan}
+
+\subsection{电磁阻尼的概念与原理}
+
+\begin{zhishi}[电磁阻尼]
+当导体在磁场中运动时，导体中产生的感应电流（涡流）会使导体受到安培力，\textbf{安培力的方向总是阻碍导体的运动}，这种现象称为\key{电磁阻尼}。
+\end{zhishi}
+
+\noindent\textbf{1．用楞次定律解释}
+
+感应电流的效果总是阻碍引起感应电流的原因。导体相对磁场运动是“原因”，安培力阻碍二者的相对运动就是“效果”，即\key{“来拒去留”}。
+\begin{itemize}[leftmargin=2.4em,label=\textbullet]
+  \item \textbf{阻尼摆}：铝板进入磁场时磁通量增大，离开磁场时磁通量减小，板中都产生涡流，涡流受到的安培力总是阻碍铝板运动，所以摆动很快停止。梳状铝板的缝隙切断了大部分涡流回路，涡流小，阻尼弱。
+  \item \textbf{磁体在铜管中下落}：把铜管看成由许多闭合铜环叠成。磁体下方的铜环磁通量增大，感应电流阻碍磁体靠近（“来拒”）；磁体上方的铜环磁通量减小，感应电流阻碍磁体远离（“去留”）。磁体受到的电磁力都\textbf{向上}，加速度 $a<g$；速度越大，阻力越大，当阻力增大到与重力相等时，磁体匀速下落（达到\textbf{收尾速度}）。
+\end{itemize}
+
+\noindent\textbf{2．用能量守恒解释}
+
+导体克服安培力做功，把\textbf{机械能（动能）转化为电能}，电能又通过涡流转化为\textbf{内能}。因此电磁阻尼中，导体的机械能减少，导体发热。例如，磁体在铜管中下落时，磁体减少的重力势能一部分转化为动能，另一部分转化为铜管的内能；达到收尾速度后，减少的重力势能全部转化为内能。
+
+\noindent\textbf{3．磁电式电表中的电磁阻尼}
+
+\noindent\begin{minipage}[c]{0.62\linewidth}
+磁电式电表的线圈绕在\textbf{铝框}上，指针也固定在铝框上。测电流时，线圈带动铝框和指针一起偏转。铝框转动时切割磁感线，框中产生感应电流，磁场对它的安培力阻碍其转动，使指针\textbf{很快停在读数位置}，便于读数。
+
+运输灵敏电流计时，常用导线把两个接线柱\textbf{连在一起}（短接）。这样电表线圈和导线构成闭合回路，运输中指针晃动时线圈中产生感应电流，电磁阻尼使指针的摆动迅速减弱，从而\textbf{保护电表}（防止指针剧烈摆动而打弯、游丝损坏）。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.35\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.85]
+  % 刻度盘
+  \draw[line width=0.5pt] (60:2.25) arc (60:120:2.25);
+  \foreach \a in {60,66,...,120} \draw[line width=0.4pt] (\a:2.25) -- (\a:2.1);
+  % 磁极
+  \fill[gray!55] (-2.0,-0.95) rectangle (-0.6,0.95);
+  \fill[gray!55] (0.6,-0.95) rectangle (2.0,0.95);
+  \fill[white] (0,0) circle (1.1);
+  \node[font=\footnotesize\bfseries] at (-1.6,0) {N};
+  \node[font=\footnotesize\bfseries] at (1.6,0) {S};
+  % 铁芯
+  \fill[ironc] (0,0) circle (0.68);
+  \node[font=\scriptsize] at (0,-0.3) {铁芯};
+  % 辐向磁场
+  \foreach \a in {-30,-15,0,15,30}{
+    \draw[bline,->,line width=0.5pt] (180+\a:1.08) -- (180+\a:0.7);
+    \draw[bline,->,line width=0.5pt] (\a:0.7) -- (\a:1.08);}
+  % 铝框（线圈）
+  \draw[Icur!80!black,line width=1.3pt] (-0.89,-0.78) rectangle (0.89,0.78);
+  % 指针
+  \draw[line width=0.9pt] (0,0) -- (95:2.2);
+  \fill (0,0) circle (1.4pt);
+  \node[font=\scriptsize,Icur!80!black] at (0,-1.3) {铝框（绕有线圈）};
+  \node[font=\scriptsize] at (-1.0,2.15) {指针};
+\end{tikzpicture}
+\captionof{figure}{磁电式电表示意图}\label{fig:meter}
+\end{minipage}
+
+\subsection{电磁阻尼的特点}
+
+\begin{zhishi}[电磁阻尼的四个特点]
+\begin{steps}
+  \item \textbf{方向}：总是阻碍导体与磁场间的\textbf{相对运动}。
+  \item \textbf{大小}：与相对速度有关，速度越大，阻力越大（对单根导体棒：$F=\dfrac{B^2l^2v}{R}\propto v$）；相对速度为零时阻力为零，所以\textbf{电磁阻尼只能使物体减速，不能使物体保持静止}。
+  \item \textbf{能量}：机械能 $\to$ 电能 $\to$ 内能，导体会发热。
+  \item \textbf{优点}：不接触、无磨损、噪声小、反应快；\textbf{强弱}取决于磁场强弱、导体电阻率（铜、铝效果好）以及涡流回路是否完整（开缝会减弱阻尼）。
+\end{steps}
+\end{zhishi}
+
+\subsection{电磁阻尼的应用}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\sffamily\bfseries\centering\arraybackslash}m{2.3cm} Y}
+\toprule
+\textbf{应用} & \multicolumn{1}{c}{\textbf{简要原理}} \\
+\midrule
+仪表阻尼 & 磁电式电表的铝框产生涡流，使指针迅速稳定；运输时短接接线柱，保护电表 \\
+涡流制动\newline（电磁刹车） & 部分高速列车装有涡流制动装置：车上的电磁铁靠近钢轨，列车运动时钢轨中产生涡流，阻碍列车运动，不接触、无磨损 \\
+游乐设施的\newline 磁力刹车 & 过山车、跳楼机的轨道（塔架）上装有强磁铁，车上装有铜（铝）制刹车片，刹车片穿过磁场时产生涡流而减速；低速时制动力小，最后停车还需机械刹车 \\
+电涡流缓速器 & 大型客车、货车的辅助制动装置：通电后转子盘中产生涡流，产生阻碍转动的制动力矩，下长坡时可减轻机械刹车的负担 \\
+磁控健身车 & 调节磁铁与金属飞轮间的距离，改变飞轮中涡流的大小，从而调节骑行阻力 \\
+精密仪器减振 & 扫描隧道显微镜等精密仪器中，利用铜板在磁场中的电磁阻尼迅速衰减微小振动 \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{电磁阻尼的应用}
+\end{center}
+
+\begin{liti}
+（多选）关于磁电式电表，下列说法正确的是\kuohao{AC}
+\xx{线圈绕在铝框上，铝框在转动时产生感应电流，起电磁阻尼作用，使指针能较快地停在读数位置}%
+{若把铝框换成同样形状的塑料框，指针稳定下来所需的时间更短}%
+{运输时用导线把两个接线柱连起来，是利用电磁阻尼来保护电表}%
+{运输时用导线把两个接线柱连起来，是为了防止电表内部产生感应电流}
+\begin{jiexi}[2cm]
+铝框随线圈转动时切割磁感线产生感应电流，受到阻碍其转动的安培力，指针能较快停下，A正确；塑料框是绝缘体，不产生感应电流，没有电磁阻尼作用，指针要摆动较长时间才能停下，B错误；短接接线柱后，线圈与导线构成闭合回路，指针晃动时线圈中产生感应电流，电磁阻尼使指针的摆动迅速减弱，起保护作用，可见短接恰恰是为了让线圈中产生感应电流，C正确、D错误。
+\end{jiexi}
+\daan{AC}
+\end{liti}
+
+\begin{liti}[改编自2017·全国卷Ⅰ]
+扫描隧道显微镜（STM）可用来探测样品表面原子尺度上的形貌。为了有效隔离外界振动对 STM 的扰动，在圆底盘周边沿其径向对称地安装若干对紫铜薄板，并施加磁场来快速衰减其微小振动。无扰动时，按下列四种方案对紫铜薄板施加恒定磁场（图中阴影为磁场区域，磁场方向垂直于薄板，区域边界外无磁场）；出现扰动后，对于紫铜薄板\textbf{上下及左右}振动的衰减最有效的方案是\kuohao{A}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+\def\plate#1{%
+  \begin{scope}[xshift=#1]
+  \fill[copper!55] (0,0) rectangle (2.2,1.3);
+  \draw[line width=0.5pt] (0,0) rectangle (2.2,1.3);
+  \end{scope}}
+\def\field#1#2#3#4#5{%
+  \begin{scope}[xshift=#1]
+  \fill[Bline,opacity=0.22] (#2,#3) rectangle (#4,#5);
+  \draw[Bline,dashed,line width=0.5pt] (#2,#3) rectangle (#4,#5);
+  \end{scope}}
+% A：磁场覆盖薄板左下角（水平、竖直边界都穿过薄板）
+\plate{0cm}\field{0cm}{-0.4}{-0.4}{1.1}{0.65}
+% B：磁场覆盖整块薄板
+\plate{3.4cm}\field{3.4cm}{-0.35}{-0.35}{2.55}{1.65}
+% C：水平带状磁场覆盖薄板下部
+\plate{6.8cm}\field{6.8cm}{-0.4}{-0.4}{2.6}{0.65}
+% D：竖直带状磁场覆盖薄板左部
+\plate{10.2cm}\field{10.2cm}{-0.4}{-0.4}{1.1}{1.7}
+\foreach \x/\l in {1.1/A,4.5/B,7.9/C,11.3/D} \node[font=\small] at (\x,-0.85) {\l};
+\end{tikzpicture}
+\end{center}
+\begin{jiexi}[2.5cm]
+要使薄板的振动迅速衰减，薄板振动时其中必须产生涡流，即穿过薄板内回路的磁通量要随薄板的运动而变化。
+方案A中，磁场区域的水平边界和竖直边界都穿过薄板，薄板上下振动或左右振动时，薄板处在磁场中的面积都会变化，都会产生涡流，两种振动都能被有效衰减，A正确。
+方案B中，薄板完全处在匀强磁场中，微小振动时磁通量不变，不产生涡流，没有阻尼作用。
+方案C中，薄板左右振动时处在磁场中的面积不变，左右振动不能被衰减。
+方案D中，薄板上下振动时处在磁场中的面积不变，上下振动不能被衰减。
+\end{jiexi}
+\daan{A}
+\end{liti}
+
+\begin{liti}[改编自2023·全国乙卷]
+一学生小组在探究电磁感应现象时，进行了如下比较实验。用图(a)所示的缠绕方式，将漆包线分别绕在几何尺寸相同的有机玻璃管和金属铝管上，漆包线的两端与电流传感器接通。两管皆竖直放置，将一很小的强磁体分别从管的上端由静止释放，在管内下落至管的下端。实验中电流传感器测得的两管上流过漆包线的电流 $I$ 随时间 $t$ 的变化分别如图(b)和图(c)所示。分析可知\kuohao{A}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+% (a) 绕线方式
+\begin{scope}
+  \fill[gray!14] (-0.35,-1.1) rectangle (0.35,2.2);
+  \draw[line width=0.5pt] (-0.35,-1.1) rectangle (0.35,2.2);
+  \foreach \y in {-0.75,-0.05,0.65,1.35}{
+    \foreach \d in {0,0.08,0.16} \draw[copper!95!black,line width=0.6pt] (-0.35,\y+\d) -- (0.35,\y+\d+0.06);}
+  \draw[copper!95!black,line width=0.5pt] (0.35,1.57) -- (0.75,1.6) -- (0.75,-1.45) -- (0.2,-1.45);
+  \draw[copper!95!black,line width=0.5pt] (-0.35,-0.75) -- (-0.75,-0.75) -- (-0.75,-1.45) -- (-0.2,-1.45);
+  \draw[fill=white,line width=0.5pt] (-0.25,-1.65) rectangle (0.25,-1.25);
+  \node[font=\tiny] at (0,-1.45) {A};
+  \fill[red!65] (-0.12,2.0) rectangle (0.12,2.12);
+  \node[font=\scriptsize,align=center] at (1.65,-1.45) {电流\\传感器};
+  \node[font=\small] at (0,-2.05) {(a)};
+\end{scope}
+% (b) 匀速：等间距、等幅
+\begin{scope}[xshift=2.6cm,yshift=0.6cm]
+  \draw[->] (0,0) -- (5.2,0) node[below,font=\footnotesize] {$t$};
+  \draw[->] (0,-0.75) -- (0,0.85) node[left,font=\footnotesize] {$I$};
+  \node[font=\footnotesize,below left] at (0,0) {$O$};
+  \draw[Icur!80!black,line width=0.7pt,domain=0.05:5,samples=500]
+    plot (\x,{pulse(\x,0.55,0.38,0.11)+pulse(\x,1.35,0.38,0.11)+pulse(\x,2.15,0.38,0.11)
+              +pulse(\x,2.95,0.38,0.11)+pulse(\x,3.75,0.38,0.11)+pulse(\x,4.55,0.38,0.11)});
+  \node[font=\small] at (2.6,-1.15) {(b)};
+\end{scope}
+% (c) 加速：间距变小、幅度变大
+\begin{scope}[xshift=8.6cm,yshift=0.6cm]
+  \draw[->] (0,0) -- (5.2,0) node[below,font=\footnotesize] {$t$};
+  \draw[->] (0,-0.75) -- (0,0.85) node[left,font=\footnotesize] {$I$};
+  \node[font=\footnotesize,below left] at (0,0) {$O$};
+  \draw[Icur!80!black,line width=0.7pt,domain=0.05:5,samples=500]
+    plot (\x,{pulse(\x,0.7,0.3,0.13)+pulse(\x,1.6,0.42,0.092)+pulse(\x,2.3,0.52,0.075)
+              +pulse(\x,2.88,0.6,0.065)+pulse(\x,3.4,0.67,0.058)+pulse(\x,3.87,0.73,0.053)});
+  \node[font=\small] at (2.6,-1.15) {(c)};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\xx{图(c)是用玻璃管获得的图像}%
+{在铝管中下落，小磁体做匀变速运动}%
+{在玻璃管中下落，小磁体受到的电磁阻力始终保持不变}%
+{用铝管时测得的电流第一个峰到最后一个峰的时间间隔比用玻璃管时的短}
+\begin{jiexi}[3cm]
+小磁体在\textbf{铝管}中下落时，铝管中产生涡流，磁体受到较强的电磁阻尼，很快达到收尾速度而近似匀速下落，经过各段线圈时的速度相同，电流脉冲等幅、等间隔，对应图(b)。小磁体在\textbf{玻璃管}中下落时，玻璃管中不产生涡流，只有漆包线中的感应电流对磁体有很弱的阻碍作用，磁体近似做自由落体运动，速度越来越大，经过各段线圈的时间间隔越来越短、感应电流越来越大，对应图(c)，A正确。
+
+在铝管中，磁体所受阻力随速度变化，下落过程中加速度不断变化，最后近似为零，不是匀变速运动，B错误。在玻璃管中，磁体所受的电磁阻力来自漆包线中的感应电流，电流时有时无、时大时小，阻力不是恒定的，C错误。用铝管时磁体下落得慢，所用时间长，第一个峰到最后一个峰的时间间隔比用玻璃管时的长，D错误。
+\end{jiexi}
+\daan{A}
+\end{liti}
+
+\begin{liti}
+（多选）某游乐园的“跳楼机”采用磁力刹车：在塔架下部的刹车区安装有多组强磁铁，座舱外侧装有铜制刹车片。座舱从高处由静止下落，进入刹车区后，刹车片在磁铁间运动而减速。下列说法正确的是\kuohao{ABD}
+\xx{刹车片中产生涡流，涡流受到的安培力阻碍座舱下落}%
+{进入刹车区时座舱的速度越大，所受的磁力刹车力越大}%
+{磁力刹车可以使座舱在刹车区内的任意位置悬停}%
+{若把铜制刹车片换成同样大小的塑料片，磁力刹车将失效}
+\begin{jiexi}[2cm]
+刹车片在磁场中运动，穿过刹车片内回路的磁通量变化，产生涡流，涡流受到的安培力阻碍刹车片与磁场的相对运动，即阻碍座舱下落，A正确；速度越大，感应电动势越大，涡流越大，刹车力越大，B正确；座舱速度为零时，刹车片中没有涡流，刹车力为零，座舱在重力作用下又会加速，所以磁力刹车不能使座舱悬停，C错误；塑料是绝缘体，不能产生涡流，D正确。
+\end{jiexi}
+\daan{ABD}
+\end{liti}
+
+\begin{yicuo}
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 电磁阻尼中安培力“阻碍”的是\textbf{相对运动}，不是“阻止”：导体仍在运动，只是变慢了。
+  \item 强磁体在铜管中下落，加速度小于 $g$ 且逐渐减小，最终可能匀速——\textbf{不是}匀变速运动，机械能\textbf{不守恒}。
+  \item 非磁性物体（如普通铁块、铝块）在铜管中下落，周围没有磁场，铜管中不产生涡流，物体近似自由下落。
+  \item 运输电表时短接接线柱，是为了\textbf{利用}线圈中的感应电流产生电磁阻尼，而不是防止电流产生。
+\end{enumerate}
+\end{yicuo}

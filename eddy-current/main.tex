@@ -1,0 +1,28 @@
+%======================================================================
+%  涡流、电磁阻尼和电磁驱动 —— 高中物理专题讲义（涡流及其应用）
+%  对应：人教版（2019）选择性必修第二册 第二章 第3节
+%  编译：xelatex main.tex（教师版）；xelatex student.tex（学生版）
+%======================================================================
+\documentclass[a4paper,zihao=5,UTF8,fontset=none]{ctexart}
+\input{preamble}
+\hypersetup{
+  pdftitle   = {涡流、电磁阻尼和电磁驱动——高中物理专题讲义},
+  pdfsubject = {高中物理 选择性必修第二册 电磁感应},
+  pdfkeywords= {涡流, 感生电场, 电磁阻尼, 电磁驱动, 电磁炉, 电子感应加速器},
+}
+
+\begin{document}
+
+\input{sections/00-front}
+\input{sections/01-field}
+\input{sections/02-eddy}
+\input{sections/03-damping}
+\input{sections/04-driving}
+\input{sections/05-quantitative}
+\input{sections/06-summary}
+\input{sections/07-exercises}
+\ifteacher
+  \input{sections/08-answers}
+\fi
+
+\end{document}

@@ -1,0 +1,290 @@
+%======================================================================
+%  01 电磁感应现象中的感生电场
+%======================================================================
+\section{电磁感应现象中的感生电场}
+
+\subsection{问题的提出：谁推动了静止导体中的电荷？}
+
+引起闭合回路磁通量变化的方式有两类：一类是\key{导体在磁场中运动}（切割磁感线），另一类是\key{导体不动，磁场发生变化}。
+
+对于前者，导体中的自由电荷随导体一起运动，受到洛伦兹力的作用而沿导体定向移动，洛伦兹力沿导体方向的分力充当了非静电力。对于后者，导体是静止的，自由电荷没有随导体的定向运动，洛伦兹力不可能使它们沿导体定向移动。那么，\textbf{是什么力推动了静止导体中的自由电荷，从而形成感应电流的呢？}
+
+\subsection{感生电场}
+
+19世纪60年代，英国物理学家\key{麦克斯韦}在他的电磁理论中指出：\textbf{变化的磁场会在周围空间激发一种电场}，这种电场叫作\key{感生电场}。处在感生电场中的自由电荷受到电场力的作用而定向移动：若导体闭合，就形成感应电流；若导体不闭合，导体两端就积累电荷，产生感应电动势。可见，\textbf{感生电场对自由电荷的作用力就是产生感生电动势的非静电力}。
+
+\begin{center}
+\begin{tikzpicture}
+% ---- (a) 立体示意：竖直向上且增强的磁场穿过水平导体环 ----
+\begin{scope}
+  \foreach \x in {-1.05,-0.55,-0.05,0.45,0.95}
+    \draw[bline,->] (\x+0.05,-1.25) -- (\x+0.05,1.45);
+  \draw[Icur,line width=1.6pt] (0,0) ellipse (1.55 and 0.42);
+  % 被前景遮挡的磁感线段重画在前面
+  \foreach \x in {-1.05,-0.55,-0.05,0.45,0.95}
+    \draw[bline] (\x+0.05,-0.43) -- (\x+0.05,-0.2);
+  % 感应电流方向：俯视顺时针 → 前侧（下方弧）由右向左
+  \draw[Icur,line width=1.6pt,-{Stealth[length=7pt,width=6pt]}] (0.35,-0.41) -- (-0.15,-0.42);
+  \draw[Icur,line width=1.6pt,-{Stealth[length=7pt,width=6pt]}] (-0.35,0.41) -- (0.15,0.42);
+  \node[Bline,font=\small] at (1.35,1.35) {$B$ 增大};
+  \node[Icur!80!black,font=\footnotesize,align=center] at (2.25,-0.55) {闭合导体环\\中的感应电流};
+  \node[font=\small] at (0,-1.7) {(a)\ 立体示意};
+\end{scope}
+% ---- (b) 俯视：感生电场线是闭合曲线 ----
+\begin{scope}[xshift=6.3cm]
+  \fill[Bline!6] (0,0) circle (1.05);
+  \draw[Bline!55,densely dashed] (0,0) circle (1.05);
+  \foreach \x in {-0.8,-0.4,...,0.81} \foreach \y in {-0.8,-0.4,...,0.81}{
+    \pgfmathtruncatemacro\inside{(\x*\x+\y*\y)<0.95}
+    \ifnum\inside=1 \pic at (\x,\y) {Bout}; \fi}
+  \foreach \r in {0.6,1.35,1.75}
+    \draw[eline,postaction={decorate},decoration={markings,
+      mark=at position 0.125 with {\arrowreversed{Stealth[length=5pt,width=4pt]}},
+      mark=at position 0.625 with {\arrowreversed{Stealth[length=5pt,width=4pt]}}}] (0,0) circle (\r);
+  \node[Eline,font=\small] at (2.25,1.15) {$E_{\text{感}}$};
+  \node[Bline,font=\footnotesize,align=left] at (2.45,-0.95) {$B$ 竖直向上\\且增大};
+  \node[font=\small] at (0,-2.2) {(b)\ 俯视：电场线闭合};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{变化的磁场在周围空间激发感生电场（磁场竖直向上且增强时，俯视感生电场沿顺时针方向）}
+\end{center}
+
+\begin{zhishi}[感生电场的特点]
+\begin{steps}
+  \item \textbf{场源}：由\key{变化的磁场}激发，与空间中是否存在导体、导体是否闭合\textbf{无关}。导体（导体环）只是“显示”感生电场存在的工具。
+  \item \textbf{电场线}：是\key{闭合曲线}，没有起点和终点，像旋涡一样，所以感生电场也叫\key{涡旋电场}。
+  \item \textbf{方向}：与“放在该处的闭合导体环中感应电流的方向”相同，可用\key{楞次定律 + 安培定则}判断。
+  \item \textbf{做功}：感生电场力做功与路径有关，移动电荷绕行一周，电场力做功一般\textbf{不为零}（等于 $qE$，$E$ 为该回路中的感生电动势），因此感生电场中\textbf{不能}引入电势、电势能的概念。
+  \item \textbf{地位}：“变化的磁场产生电场”是麦克斯韦电磁场理论的基本观点之一（另一观点是“变化的电场产生磁场”，将在第四章学习）。
+\end{steps}
+\end{zhishi}
+
+\begin{center}
+\small
+\begin{tabularx}{0.94\linewidth}{>{\sffamily\bfseries\centering\arraybackslash}m{2.2cm} C C}
+\toprule
+\textbf{比较项目} & \textbf{静电场} & \textbf{感生电场（涡旋电场）} \\
+\midrule
+场源 & 静止的电荷 & 变化的磁场 \\
+电场线 & 不闭合：起于正电荷（或无穷远），止于负电荷（或无穷远） & 闭合曲线，无头无尾 \\
+做功特点 & 与路径无关，沿闭合路径一周做功为零 & 与路径有关，沿闭合路径一周做功一般不为零 \\
+电势 & 可以引入电势、电势能 & 不能引入电势 \\
+对电荷的作用 & \multicolumn{2}{c}{都对电荷有力的作用：$F=qE$} \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{静电场与感生电场的比较}
+\end{center}
+
+\begin{fangfa}[感生电场方向的判断方法（三步法）]
+\begin{steps}
+  \item 明确\textbf{原磁场的方向}及其\textbf{变化情况}（增强还是减弱）；
+  \item 由楞次定律“\key{增反减同}”确定感应电流的磁场方向；
+  \item 由安培定则确定感应电流的方向，\textbf{这就是感生电场的方向}（正电荷受力方向）。
+\end{steps}
+\noindent 例如：磁场竖直向上且增强 $\Rightarrow$ 感应电流的磁场竖直向下 $\Rightarrow$ 俯视感生电场沿\textbf{顺时针}方向。注意：电子带负电，受力方向与感生电场方向相反。
+\end{fangfa}
+
+\begin{yicuo}
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 不要认为“只有闭合回路中才有感生电场”。只要磁场变化，周围空间就有感生电场，回路是否闭合只影响有没有感应\textbf{电流}。
+  \item 不要认为“没有磁场的地方就没有感生电场”。圆柱形区域内磁场变化时，区域\textbf{外部}虽然没有磁场，但同样存在感生电场（见本节拓展提升）。
+  \item 感生电场力可以对电荷做功，而洛伦兹力永远不做功——这是二者的本质区别之一。
+\end{enumerate}
+\end{yicuo}
+
+\begin{liti}
+（多选）关于感生电场，下列说法正确的是\kuohao{CD}
+\xx{变化的磁场在周围空间激发感生电场，若周围没有导体，就不存在感生电场}%
+{感生电场的电场线是闭合曲线，沿电场线移动电荷一周，电场力做功一定为零}%
+{处在变化磁场中的闭合导体环，其中的自由电荷在感生电场力作用下定向移动形成感应电流}%
+{感生电场的方向可以用楞次定律结合安培定则来判断}
+\begin{jiexi}[2cm]
+感生电场由变化的磁场激发，与周围是否存在导体无关，A错误；感生电场的电场线闭合，电场力做功与路径有关，沿闭合电场线移动电荷一周，电场力始终与运动方向相同，做功不为零，B错误；感生电场力就是使闭合导体环中自由电荷定向移动的非静电力，C正确；感生电场的方向与假想闭合回路中感应电流的方向相同，可用楞次定律结合安培定则判断，D正确。
+\end{jiexi}
+\daan{CD}
+\end{liti}
+
+\subsection{感生电动势与动生电动势}
+
+由感生电场产生的电动势叫\key{感生电动势}；由于导体运动而产生的电动势叫\key{动生电动势}。二者的区别见下表。
+
+\begin{center}
+\small
+\begin{tabularx}{0.96\linewidth}{>{\sffamily\bfseries\centering\arraybackslash}m{2.1cm} C C}
+\toprule
+\textbf{比较项目} & \textbf{感生电动势} & \textbf{动生电动势} \\
+\midrule
+产生原因 & 磁场变化（导体不动） & 导体在磁场中运动（切割磁感线） \\
+非静电力 & 感生电场对自由电荷的电场力 & 洛伦兹力沿导体方向的分力 \\
+常用计算式 & $E=n\dfrac{\dd B}{\dd t}S$（$S$ 为回路中有磁场的面积） & $E=Blv$（$B$、$l$、$v$ 两两垂直） \\
+方向判断 & 楞次定律（结合安培定则） & 楞次定律或右手定则 \\
+能量来源 & 产生变化磁场的装置（电源）提供的能量 & 外力克服安培力做功（机械能） \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{感生电动势与动生电动势的比较}
+\end{center}
+
+\noindent\note{说明：①若磁场变化与导体运动同时存在，回路中的总电动势仍满足 $E=n\dfrac{\dd \Phi}{\dd t}$；②动生电动势中，洛伦兹力的一个分力推动电荷沿导体运动（做正功），另一个分力阻碍导体运动（做负功，宏观上表现为安培力），洛伦兹力的总功为零，它起“传递”能量的作用。}
+
+\begin{liti}
+（多选）如图所示，内壁光滑、水平放置的玻璃圆环内，有一直径略小于环管口径的带正电小球，正以速率 $v_0$ 沿逆时针方向（俯视）匀速转动。若在此空间突然加上方向竖直向上、磁感应强度 $B$ 随时间成正比增加的磁场，设运动过程中小球所带电荷量不变，则\kuohao{CD}
+
+\noindent\begin{minipage}[c]{0.66\linewidth}
+\xx{小球对玻璃圆环的压力一定不断增大}%
+{小球所受的磁场力一定不断增大}%
+{小球先沿逆时针方向减速运动，之后沿顺时针方向加速运动}%
+{磁场力对小球一直不做功}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.82]
+  \foreach \x in {-1.2,-0.6,...,1.21} \foreach \y in {-1.2,-0.6,...,1.21}{
+    \pgfmathtruncatemacro\inside{(\x*\x+\y*\y)<2.0}
+    \ifnum\inside=1 \pic at (\x,\y) {Bout}; \fi}
+  \draw[gray!70,line width=0.7pt,fill=gray!8,even odd rule] (0,0) circle (1.05) (0,0) circle (0.83);
+  \shade[ball color=exred!70] (-90:0.94) circle (0.1);
+  \draw[vel] (-90:0.94) ++(0.08,0) -- ++(0.55,0) node[right,font=\footnotesize] {$v_0$};
+  \node[font=\footnotesize] at (0,-1.62) {俯视图（$B$ 竖直向上）};
+\end{tikzpicture}
+\end{minipage}
+\begin{jiexi}[2.5cm]
+磁场竖直向上且增强，由楞次定律可知，感生电场的方向（俯视）沿\textbf{顺时针}方向。带正电小球所受电场力沿顺时针方向，与其初速度方向相反，所以小球先沿逆时针方向减速到零，然后沿顺时针方向加速运动，C正确。
+
+磁场力（洛伦兹力）始终与速度方向垂直，对小球不做功，D正确。
+
+小球速度减为零的瞬间，洛伦兹力 $F=qvB=0$，可见洛伦兹力不是一直增大，B错误；此时小球所需向心力为零，洛伦兹力也为零，圆环在水平方向对小球没有作用力，可见小球对圆环的压力也不是一直增大，A错误。
+\end{jiexi}
+\daan{CD}
+\end{liti}
+
+\subsection{感生电场的应用——电子感应加速器}
+
+\key{电子感应加速器}是利用感生电场使电子加速的设备。如图所示，上、下为电磁铁的两个磁极，磁极之间有一个\key{环形真空室}。电磁铁线圈中通入大小、方向周期性变化的电流，两极间产生变化的磁场，这个变化的磁场又在真空室内激发\key{感生电场}。电子从电子枪射入真空室后：
+\begin{itemize}[leftmargin=2.4em,label=\textbullet]
+  \item \textbf{感生电场力}沿轨道切线方向，使电子\textbf{加速}（改变速度大小）；
+  \item \textbf{洛伦兹力}指向圆心，提供向心力，使电子在环形轨道上做\textbf{圆周运动}（只改变速度方向，不做功）。
+\end{itemize}
+电子每绕行一周，感生电场力对它做功 $W=eE$（$E$ 为轨道所围回路中的感生电动势）。虽然每一周获得的能量不多，但电子在极短时间内可以绕行几十万圈，因而能获得很高的能量。
+
+\begin{center}
+\begin{tikzpicture}[scale=0.92]
+% ---- 甲：侧视剖面 ----
+\begin{scope}
+  % 轭铁
+  \fill[ironc] (-2.7,1.45) rectangle (2.7,1.95);
+  \fill[ironc] (-2.7,-1.95) rectangle (2.7,-1.45);
+  \fill[ironc] (-2.7,-1.45) rectangle (-2.2,1.45);
+  \fill[ironc] (2.2,-1.45) rectangle (2.7,1.45);
+  % 磁极（中间稍凸，使中心磁场较强）
+  \fill[ironc] (-1.35,1.45) -- (-1.35,0.32) .. controls (-0.5,0.2) and (0.5,0.2) .. (1.35,0.32) -- (1.35,1.45) -- cycle;
+  \fill[ironc] (-1.35,-1.45) -- (-1.35,-0.32) .. controls (-0.5,-0.2) and (0.5,-0.2) .. (1.35,-0.32) -- (1.35,-1.45) -- cycle;
+  \node[font=\footnotesize\bfseries] at (0,1.0) {S};
+  \node[font=\footnotesize\bfseries] at (0,-1.0) {N};
+  % 线圈截面（俯视逆时针电流 → 右侧流入、左侧流出）
+  \foreach \s in {1,-1}{
+    \fill[copper!55] (-2.05,{\s*0.55}) rectangle (-1.45,{\s*1.35});
+    \fill[copper!55] (1.45,{\s*0.55}) rectangle (2.05,{\s*1.35});
+    \foreach \yy in {0.75,1.15}{
+      \pic at (-1.75,{\s*\yy}) {Iout};
+      \pic at (1.75,{\s*\yy}) {Iin};}
+  }
+  % 磁感线（竖直向上）
+  \foreach \x in {-0.7,-0.25,0.25,0.7}
+    \draw[bline,->] (\x,-0.24) -- (\x,0.26);
+  % 真空室截面
+  \foreach \x in {-1.08,1.08}
+    \draw[fill=white,line width=0.6pt] (\x,0) ellipse (0.2 and 0.13);
+  \fill[Icur] (1.08,0) circle (1.3pt);
+  \fill[Icur] (-1.08,0) circle (1.3pt);
+  \draw[lbl,<-] (1.2,-0.1) -- (2.0,-0.2) -- (3.0,-0.2) node[right] {真空室};
+  \draw[lbl,<-] (2.0,1.1) -- (3.0,1.1) node[right] {线圈};
+  \draw[lbl,<-] (2.6,1.7) -- (3.0,1.7) node[right] {电磁铁};
+  \node[font=\small] at (0,-2.35) {甲\ 侧视图};
+\end{scope}
+% ---- 乙：俯视图 ----
+\begin{scope}[xshift=8.3cm]
+  \foreach \x in {-1.6,-1.2,...,1.61} \foreach \y in {-1.6,-1.2,...,1.61}{
+    \pgfmathtruncatemacro\inside{(\x*\x+\y*\y)<2.9}
+    \ifnum\inside=1 \pic at (\x,\y) {Bout}; \fi}
+  \fill[gray!25,opacity=0.75,even odd rule] (0,0) circle (1.42) (0,0) circle (0.98);
+  \draw[gray!70,line width=0.6pt] (0,0) circle (1.42) (0,0) circle (0.98);
+  \draw[Icur,line width=0.9pt,densely dashed] (0,0) circle (1.2);
+  \fill[Icur] (40:1.2) circle (2.2pt);
+  \node[Icur!80!black,font=\footnotesize] at (40:0.8) {$e^-$};
+  \draw[vel] (40:1.2) -- ++(130:0.75) node[above,font=\footnotesize] {$v$};
+  \node[font=\footnotesize,align=center] at (0,-2.05) {$B$ 竖直向上（垂直纸面向外）};
+  \node[font=\small] at (0,-2.5) {乙\ 真空室俯视图};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{电子感应加速器原理示意图}
+\end{center}
+
+\begin{fangfa}[电子感应加速器问题的分析要点]
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item \textbf{两个力，各司其职}：感生电场力（切向）负责加速，洛伦兹力（径向）负责“转弯”。
+  \item \textbf{两个条件，缺一不可}（以俯视、$B$ 竖直向上为例）：
+  \begin{itemize}[leftmargin=1.2em,label=\textbullet]
+    \item 洛伦兹力指向圆心 $\Rightarrow$ 电子必须沿\textbf{逆时针}方向运动；
+    \item 电子被加速 $\Rightarrow$ 电子受力沿逆时针方向 $\Rightarrow$ 感生电场沿顺时针方向 $\Rightarrow$ 磁场必须\textbf{增强}。
+  \end{itemize}
+  \item \textbf{只有约 $\tfrac14$ 周期可用}：若线圈中通正弦交变电流，只有在“磁场方向满足向心条件且大小增强”的那 $\tfrac14$ 周期内电子才能被加速，因此电子要在这段时间结束前被引出。
+\end{enumerate}
+\end{fangfa}
+
+\begin{liti}
+（多选）电子感应加速器的基本原理如上图所示。某时刻电磁铁线圈中电流方向如图甲所示，两极间产生竖直向上的磁场，此时电子在真空室中（俯视）沿逆时针方向运动。下列说法正确的是\kuohao{AD}
+\xx{若线圈中电流增大，电子将被加速}%
+{若线圈中电流减小，电子将被加速}%
+{电子做圆周运动所需的向心力由感生电场力提供}%
+{若线圈中通正弦交变电流，电子只能在“磁场竖直向上且增强”的那段时间内被加速}
+\begin{jiexi}[2.5cm]
+线圈中电流增大时，竖直向上的磁场增强，由楞次定律可知感生电场（俯视）沿顺时针方向，电子带负电，所受电场力沿逆时针方向，与运动方向相同，电子被加速，A正确；同理，电流减小时感生电场沿逆时针方向，电子被减速，B错误。
+
+感生电场力沿轨道切线方向，只改变电子速度的大小；向心力由洛伦兹力提供，C错误。
+
+若磁场方向变为竖直向下，沿逆时针方向运动的电子所受洛伦兹力背离圆心，电子无法维持圆周运动；若磁场竖直向上但减弱，电子被减速。故电子只能在磁场竖直向上且增强的那段时间（约 $\tfrac14$ 周期）内被加速，D正确。
+\end{jiexi}
+\daan{AD}
+\end{liti}
+
+\begin{tuozhan}[感生电场的定量计算　电子感应加速器的“2:1”条件]
+\textbf{1．圆柱形区域内均匀变化磁场的感生电场}
+
+如图，半径为 $R$ 的圆柱形区域内有匀强磁场，$\dfrac{\dd B}{\dd t}=k$。由对称性，感生电场线是以轴线为圆心的一系列同心圆，同一圆周上各点场强 $E_{\text{感}}$ 大小相等、方向沿切线。在半径为 $r$ 的圆周上，感生电场力移动单位正电荷绕行一周所做的功等于该回路的感生电动势，即
+\[
+E_{\text{感}}\cdot 2\pi r = \frac{\dd B}{\dd t}\,S_{\text{有效}} .
+\]
+
+\noindent\begin{minipage}[c]{0.6\linewidth}
+\begin{itemize}[leftmargin=1.2em,label=\textbullet]
+  \item $r\le R$：$E_{\text{感}}\cdot 2\pi r=k\pi r^2$，得 $E_{\text{感}}=\dfrac{kr}{2}$，与 $r$ 成正比；
+  \item $r> R$：$E_{\text{感}}\cdot 2\pi r=k\pi R^2$，得 $E_{\text{感}}=\dfrac{kR^2}{2r}$，与 $r$ 成反比。
+\end{itemize}
+可见在磁场区域\textbf{外部}（$r>R$）虽然没有磁场，却仍然存在感生电场。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.36\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+  \draw[->] (0,0) -- (4.3,0) node[below] {$r$};
+  \draw[->] (0,0) -- (0,2.0) node[left] {$E_{\text{感}}$};
+  \draw[eline,line width=0.9pt] (0,0) -- (1.2,1.5);
+  \draw[eline,line width=0.9pt,domain=1.2:4.1,samples=40] plot (\x,{1.8/\x});
+  \draw[dashed,gray] (1.2,0) node[below,black] {$R$} -- (1.2,1.5) -- (0,1.5) node[left,black] {$\dfrac{kR}{2}$};
+  \node[below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{minipage}
+
+\medskip
+\textbf{2．电子感应加速器的“2:1”条件}
+
+要使电子在\textbf{半径 $R$ 不变}的轨道上被持续加速，磁场必须满足一定条件。设轨道处的磁感应强度为 $B_R$，轨道内的平均磁感应强度为 $\overline{B}$（$\Phi=\pi R^2\overline{B}$）。
+\begin{itemize}[leftmargin=2.4em,label=\textbullet]
+  \item 径向（向心力）：$evB_R=m\dfrac{v^2}{R}$，得 $mv=eRB_R$，所以 $\dd(mv)=eR\,\dd B_R$；
+  \item 切向（动量定理）：$\dd(mv)=eE_{\text{感}}\dd t=e\cdot\dfrac{1}{2\pi R}\cdot\dfrac{\dd \Phi}{\dd t}\cdot\dd t=\dfrac{eR}{2}\,\dd\overline{B}$。
+\end{itemize}
+比较两式得 $\dd B_R=\dfrac12\dd\overline{B}$，若二者都从零开始增大，则
+\[
+B_R=\frac12\,\overline{B},
+\]
+即\textbf{轨道处的磁感应强度应等于轨道所围面积内平均磁感应强度的一半}。所以电磁铁磁极要做成中间强、边缘弱的特殊形状（如图甲）。
+\end{tuozhan}

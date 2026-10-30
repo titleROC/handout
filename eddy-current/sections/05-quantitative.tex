@@ -1,0 +1,210 @@
+%======================================================================
+%  05 电磁阻尼与电磁驱动的定量分析
+%======================================================================
+\section{电磁阻尼与电磁驱动的定量分析}
+
+涡流在导体中的分布一般很复杂，高中阶段不要求直接计算涡流。高考中对电磁阻尼、电磁驱动的定量考查，通常把导体简化为\key{导体棒}或\key{线框}，用“切割磁感线”的模型来分析，综合运用\textbf{动力学、动量、能量}三大观点。
+
+\subsection{模型一：只受安培力的阻尼运动}
+
+\noindent\begin{minipage}[c]{0.56\linewidth}
+如图，光滑水平导轨间距为 $l$，左端接有电阻，回路总电阻为 $R$，匀强磁场 $B$ 竖直向下。质量为 $m$ 的导体棒以初速度 $v_0$ 向右滑行，最终停下。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.41\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.82]
+  \Bfield{in}{0.5}{0.25}{4.1}{1.45}{0.6}{0.6}
+  \draw[line width=0.8pt] (0,0) -- (4.6,0) (0,1.7) -- (4.6,1.7);
+  \draw[line width=0.8pt] (0,0) -- (0,0.55) (0,1.15) -- (0,1.7);
+  \draw[fill=white,line width=0.6pt] (-0.13,0.55) rectangle (0.13,1.15);
+  \node[font=\scriptsize] at (-0.4,0.85) {$R$};
+  \draw[line width=2pt,gray!40!black] (2.2,-0.12) -- (2.2,1.82);
+  \draw[vel] (2.3,0.85) -- (3.1,0.85) node[above,font=\footnotesize] {$v_0$};
+  \draw[<->,gray,line width=0.4pt] (4.85,0) -- node[right,black,font=\footnotesize] {$l$} (4.85,1.7);
+  \node[Bline,font=\footnotesize] at (4.35,1.95) {$B$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{fangfa}[电磁阻尼问题的三个观点]
+\textbf{1．动力学观点——定性分析运动过程}
+\[E=Blv,\qquad I=\frac{Blv}{R},\qquad F_{\text{安}}=BIl=\frac{B^2l^2v}{R},\qquad a=\frac{F_{\text{安}}}{m}=\frac{B^2l^2v}{mR}.\]
+$v\downarrow\Rightarrow F_{\text{安}}\downarrow\Rightarrow a\downarrow$：导体棒做\textbf{加速度逐渐减小的减速运动}，直到停止。$v$-$t$ 图像是斜率绝对值逐渐减小的曲线。
+
+\textbf{2．动量观点——求电荷量、位移、时间}
+
+安培力是变力，不能用运动学公式求位移，但安培力的冲量可以用电荷量表示：
+\[I_{F}=\sum B\,i\,l\,\dd t=Bl\sum i\,\dd t=Blq .\]
+由动量定理 $-Blq=0-mv_0$，得 $q=\dfrac{mv_0}{Bl}$；又 $q=\dfrac{\dd\Phi}{R}=\dfrac{Blx}{R}$，得滑行距离
+\[x=\frac{mv_0R}{B^2l^2}.\]
+
+\noindent\begin{minipage}[c]{0.6\linewidth}
+\textbf{重要推论}：在任一小段时间内，$-\dfrac{B^2l^2v}{R}\dd t=m\dd v$，而 $v\dd t=\dd x$，所以 $\dd v=-\dfrac{B^2l^2}{mR}\dd x$，即
+\[v=v_0-\frac{B^2l^2}{mR}\,x ,\]
+\textbf{只受安培力时，速度随位移均匀减小}（$v$-$x$ 图像是直线）。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.37\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.62]
+  \draw[->] (0,0) -- (3.1,0) node[below,font=\footnotesize] {$t$};
+  \draw[->] (0,0) -- (0,2.2) node[left,font=\footnotesize] {$v$};
+  \draw[methodpurple,line width=0.9pt,domain=0:2.9,samples=40] plot (\x,{1.8*exp(-1.1*\x)});
+  \node[left,font=\scriptsize] at (0,1.8) {$v_0$};
+  \node[below left,font=\scriptsize] at (0,0) {$O$};
+  \begin{scope}[xshift=4cm]
+  \draw[->] (0,0) -- (3.1,0) node[below,font=\footnotesize] {$x$};
+  \draw[->] (0,0) -- (0,2.2) node[left,font=\footnotesize] {$v$};
+  \draw[methodpurple,line width=0.9pt] (0,1.8) -- (2.4,0);
+  \node[left,font=\scriptsize] at (0,1.8) {$v_0$};
+  \node[below,font=\scriptsize] at (2.4,0) {$\frac{mv_0R}{B^2l^2}$};
+  \node[below left,font=\scriptsize] at (0,0) {$O$};
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+\textbf{3．能量观点——求焦耳热}
+
+导体棒克服安培力做的功等于回路中产生的电能，全部转化为焦耳热：$Q=\dfrac12mv_0^2$。若导体棒电阻为 $r$、外电阻为 $R_0$，则 $Q_{R_0}=\dfrac{R_0}{R_0+r}Q$。
+\end{fangfa}
+
+\subsection{模型二：恒力作用下的收尾速度}
+
+导体在恒力 $F$（如重力、恒定拉力）和安培力共同作用下运动时，速度越大，安培力越大，当安培力增大到与恒力平衡时，导体以\key{收尾速度}匀速运动：
+\[F=\frac{B^2l^2v_{\mathrm m}}{R}\quad\Longrightarrow\quad v_{\mathrm m}=\frac{FR}{B^2l^2}.\]
+例如，竖直导轨上的导体棒由静止下落：$v_{\mathrm m}=\dfrac{mgR}{B^2l^2}$。在加速阶段，由能量守恒 $mgh=\dfrac12mv^2+Q$；由动量定理 $mgt-Blq=mv$，其中 $q=\dfrac{Blh}{R}$。
+
+\subsection{模型三：阻力与速度成正比（$F=kv$）}
+
+对于涡流制动、磁体在金属管中下落等问题，可以把电磁阻力近似写成 $F=kv$（$k$ 由磁场、导体材料和几何形状决定）。处理方法与模型一、二完全相同：
+\begin{itemize}[leftmargin=2.4em,label=\textbullet]
+  \item 只受电磁阻力：由动量定理 $-k\sum v\dd t=-kx=0-mv_0$，得制动距离 $x=\dfrac{mv_0}{k}$；
+  \item 竖直下落：收尾速度 $v_{\mathrm m}=\dfrac{mg}{k}$；求时间时用动量定理 $mgt-kh=mv-mv_0$。
+\end{itemize}
+\noindent\note{说明：实际的涡流制动力只在一定速度范围内近似与速度成正比，速度很高时，制动力反而会随速度增大而减小。}
+
+\subsection{模型四：运动磁场中的电磁驱动}
+
+磁场以速度 $v_0$ 运动、导体以速度 $v$ 同向运动时，起作用的是\textbf{相对速度} $v_0-v$：
+\[E=Bl(v_0-v),\qquad F=\frac{B^2l^2(v_0-v)}{R}\quad\text{（方向与磁场运动方向相同，是动力）}.\]
+若导体受恒定阻力 $f$，则当 $F=f$ 时导体达到最大速度 $v_{\mathrm m}=v_0-\dfrac{fR}{B^2l^2}<v_0$。
+
+\noindent\textbf{能量关系}：驱动磁场的外界提供的功率 $P=Fv_0$，其中 $Fv$ 用于克服阻力做功，$F(v_0-v)$ 转化为焦耳热，即
+\[Fv_0=Fv+F(v_0-v).\]
+
+%-------------------------------- 例题 --------------------------------
+\begin{liti}
+某兴趣小组设计了一种电磁刹车装置的模型：如图所示，质量为 $m$ 的小车上固定着一个匝数为 $n$、边长为 $L$、总电阻为 $R$ 的正方形线圈，线圈平面水平。小车沿光滑水平面向右运动，进入宽度为 $d$（$d>L$）、方向竖直向下的匀强磁场区域，磁感应强度为 $B$，线圈前、后两边始终与磁场边界平行。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item 若小车进入磁场时的速度为 $v_0$，求线圈刚进入磁场时小车加速度的大小 $a$；
+  \item 求线圈进入磁场的过程中，通过线圈导线横截面的电荷量 $q$；
+  \item 若小车恰好能完全穿出磁场，求小车进入磁场时的速度 $v_0$ 以及整个过程中线圈产生的焦耳热 $Q$；
+  \item 若小车进入磁场时的速度为（3）中 $v_0$ 的 $\dfrac34$，求小车停止时线圈前边与磁场右边界的距离 $x$。
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \fill[Bline!6] (4,0) rectangle (8.4,2.2);
+  \Bfield{in}{4.35}{0.3}{8.1}{1.9}{0.5}{0.4}
+  \draw[densely dashed,Bline,line width=0.6pt] (4,-0.2) -- (4,2.4) (8.4,-0.2) -- (8.4,2.4);
+  \draw[<->,gray,line width=0.4pt] (4,-0.45) -- node[below,black,font=\footnotesize] {$d$} (8.4,-0.45);
+  \node[Bline,font=\footnotesize] at (8.75,2.0) {$B$};
+  % 小车与线圈
+  \fill[gray!20,rounded corners=2pt] (0.6,0.25) rectangle (2.6,1.95);
+  \foreach \e in {0,0.07,0.14}
+    \draw[copper!90!black,line width=0.7pt] (0.8+\e,0.45+\e) rectangle (2.4-\e,1.75-\e);
+  \draw[vel] (2.75,1.1) -- (3.55,1.1) node[above,font=\footnotesize] {$v_0$};
+  \draw[<->,gray,line width=0.4pt] (0.8,-0.05) -- node[below,black,font=\footnotesize] {$L$} (2.4,-0.05);
+  \node[font=\scriptsize] at (1.6,2.2) {俯视图};
+\end{tikzpicture}
+\end{center}
+\begin{jiexi}[8cm]
+（1）线圈前边切割磁感线，感应电动势 $E=nBLv_0$，电流 $I=\dfrac{nBLv_0}{R}$。$n$ 匝导线都受安培力，$F=nBIL=\dfrac{n^2B^2L^2v_0}{R}$，所以
+\[a=\frac{F}{m}=\frac{n^2B^2L^2v_0}{mR}.\]
+
+（2）$q=\bar{I}\dd t=\dfrac{\bar E}{R}\dd t=\dfrac{n\dd\Phi}{R}=\dfrac{nBL^2}{R}$。
+
+（3）线圈进入磁场的过程，由动量定理（取向右为正）
+\[-nBL\bar I\dd t=-nBLq=mv_1-mv_0\quad\Longrightarrow\quad v_1=v_0-\frac{n^2B^2L^3}{mR}.\]
+线圈完全在磁场中时，磁通量不变，无感应电流，小车匀速运动。线圈穿出磁场的过程与进入过程类似，速度又减小 $\dfrac{n^2B^2L^3}{mR}$。记 $v_{\dd}=\dfrac{n^2B^2L^3}{mR}$，恰好完全穿出时速度为零，则
+\[v_0=2v_{\dd}=\frac{2n^2B^2L^3}{mR},\qquad Q=\frac12mv_0^2=\frac{2n^4B^4L^6}{mR^2}.\]
+
+（4）$v_0'=\dfrac34\cdot2v_{\dd}=\dfrac32v_{\dd}$，完全进入磁场时速度 $v_1'=v_0'-v_{\dd}=\dfrac12v_{\dd}$，之后匀速运动到线圈前边到达磁场右边界，再开始穿出磁场。设穿出过程中前边又前进 $x$ 后停止，由动量定理
+\[-nBL\cdot\frac{nBLx}{R}=0-mv_1'\quad\Longrightarrow\quad x=\frac{mv_1'R}{n^2B^2L^2}=\frac{L}{2}.\]
+即小车停止时，线圈前边在磁场右边界外 $\dfrac L2$ 处（线圈一半在磁场中）。
+
+\textbf{点评}：①线圈“进”“出”磁场时受阻尼，完全在磁场中时不受安培力；②由 $\dd v\propto q\propto\dd\Phi$ 可知，进入和穿出磁场两个过程速度的减少量相等（与速度大小无关）。
+\end{jiexi}
+\end{liti}
+
+\begin{liti}
+某“跳楼机”的座舱（含乘客）总质量为 $M$，从塔顶由静止开始自由下落，下落高度 $h$ 后进入磁力刹车区，座舱进入刹车区后做减速运动。设刹车区内座舱所受的电磁阻力 $F$ 与其速度 $v$ 成正比，即 $F=kv$（$k$ 为已知常量），方向竖直向上，其他阻力不计，刹车区足够长，重力加速度为 $g$。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item 求座舱刚进入刹车区时加速度的大小和方向；
+  \item 求座舱在刹车区内运动的最终速度 $v_{\mathrm m}$；
+  \item 已知座舱进入刹车区后下降高度 $H$ 时速度减小为 $v_1$，求此过程经历的时间 $t$ 以及刹车片中产生的内能 $Q$。
+\end{enumerate}
+\begin{jiexi}[6cm]
+（1）自由下落 $h$ 时的速度 $v_0=\sqrt{2gh}$。刚进入刹车区时，由牛顿第二定律 $kv_0-Mg=Ma$，得
+\[a=\frac{k\sqrt{2gh}}{M}-g,\quad\text{方向竖直向上。}\]
+
+（2）座舱减速时阻力减小，当 $kv_{\mathrm m}=Mg$ 时匀速运动，所以 $v_{\mathrm m}=\dfrac{Mg}{k}$。
+
+（3）取竖直向下为正方向，对进入刹车区后下降 $H$ 的过程用动量定理：
+\[Mgt-\sum kv\,\dd t=Mv_1-Mv_0,\qquad \sum kv\,\dd t=k\sum v\,\dd t=kH,\]
+所以
+\[t=\frac{kH-M\left(\sqrt{2gh}-v_1\right)}{Mg}.\]
+由能量守恒，产生的内能
+\[Q=MgH+\frac12Mv_0^2-\frac12Mv_1^2=Mg(h+H)-\frac12Mv_1^2.\]
+
+\textbf{点评}：阻力与速度成正比时，阻力的冲量 $\sum kv\,\dd t=kx$ 与位移成正比——这是求解此类问题时间、位移的关键。
+\end{jiexi}
+\end{liti}
+
+\begin{liti}
+如图所示为一种电磁驱动的简化模型（与某些磁悬浮列车、直线电机的驱动原理类似）。水平面上两根足够长的平行导轨之间，有方向竖直向上和竖直向下、交替排列的匀强磁场，磁感应强度大小均为 $B$，每个磁场区域沿导轨方向的宽度都是 $L$。导轨上放置金属框 $abcd$，$ab$、$cd$ 边与导轨垂直，长度均为 $l$；$ad$、$bc$ 边长均为 $L$。金属框总电阻为 $R$，运动中所受阻力恒为 $f$。当整个磁场以速度 $v_0$ 沿导轨向右匀速运动时，金属框由静止开始运动。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item 判断金属框开始运动的方向，并求金属框刚开始运动时所受安培力的大小 $F_0$；
+  \item 求金属框能达到的最大速度 $v_{\mathrm m}$；
+  \item 金属框以最大速度运动时，为维持磁场的运动，外界每秒需要提供多少能量？其中有多少转化为焦耳热？
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \foreach \i in {0,...,5}{
+    \pgfmathsetmacro\xa{\i*1.3}
+    \pgfmathtruncatemacro\odd{mod(\i,2)}
+    \ifnum\odd=0
+      \fill[Bline!7] (\xa,0) rectangle (\xa+1.3,1.8);
+      \foreach \y in {0.35,0.9,1.45} \foreach \dx in {0.35,0.95} \pic at (\xa+\dx,\y) {Bout};
+    \else
+      \fill[Bline!14] (\xa,0) rectangle (\xa+1.3,1.8);
+      \foreach \y in {0.35,0.9,1.45} \foreach \dx in {0.35,0.95} \pic at (\xa+\dx,\y) {Bin};
+    \fi}
+  \draw[line width=0.8pt] (-0.3,0) -- (8.1,0) (-0.3,1.8) -- (8.1,1.8);
+  % 金属框
+  \draw[gray!30!black,line width=1.6pt] (2.05,0.08) rectangle (3.35,1.72);
+  \node[font=\footnotesize,above left] at (2.05,1.72) {$a$};
+  \node[font=\footnotesize,below left] at (2.05,0.08) {$b$};
+  \node[font=\footnotesize,below right] at (3.35,0.08) {$c$};
+  \node[font=\footnotesize,above right] at (3.35,1.72) {$d$};
+  \draw[Bline,->,line width=0.9pt] (5.6,2.1) -- (6.8,2.1) node[right,font=\footnotesize] {$v_0$};
+  \node[Bline,font=\scriptsize] at (4.7,2.1) {磁场整体};
+  \draw[<->,gray,line width=0.4pt] (5.2,-0.3) -- node[below,black,font=\footnotesize] {$L$} (6.5,-0.3);
+  \draw[<->,gray,line width=0.4pt] (8.35,0) -- node[right,black,font=\footnotesize] {$l$} (8.35,1.8);
+\end{tikzpicture}
+\end{center}
+\begin{jiexi}[7cm]
+（1）以磁场为参考系，金属框向左运动，感应电流的效果阻碍二者的相对运动，所以金属框受到向右的安培力，\textbf{向右}（与磁场同向）运动。
+
+$ab$、$cd$ 两边分别处在方向相反的磁场中，相对磁场以速度 $v_0$ 运动，它们产生的感应电动势在回路中方向相同、相互叠加：$E=2Blv_0$，$I=\dfrac{2Blv_0}{R}$。两边中电流方向相反、所在磁场方向也相反，所受安培力方向相同（都向右），所以
+\[F_0=2BIl=\frac{4B^2l^2v_0}{R}.\]
+
+（2）金属框速度为 $v$ 时，相对磁场的速度为 $v_0-v$，安培力 $F=\dfrac{4B^2l^2(v_0-v)}{R}$。当 $F=f$ 时速度最大：
+\[v_{\mathrm m}=v_0-\frac{fR}{4B^2l^2}.\]
+
+（3）金属框以最大速度运动时，磁场对金属框的作用力为 $f$，由牛顿第三定律，金属框对“磁场”（磁体）的反作用力也为 $f$，方向向左。为维持磁场匀速运动，外界每秒提供的能量
+\[E_{\text{总}}=fv_0 .\]
+其中转化为焦耳热的部分
+\[Q=I^2R=\left(\frac{f}{2Bl}\right)^2R=\frac{f^2R}{4B^2l^2}\quad\left(=f(v_0-v_{\mathrm m})\right),\]
+其余的 $fv_{\mathrm m}$ 用于克服阻力做功。
+
+\textbf{点评}：金属框中的电流方向会随它与磁场的相对位置周期性改变，但 $ab$、$cd$ 两边受到的安培力始终向右，所以金属框能被持续驱动。
+\end{jiexi}
+\end{liti}

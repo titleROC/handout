@@ -1,0 +1,412 @@
+%======================================================================
+%  02 涡流
+%======================================================================
+\section{涡流}
+
+\subsection{实验观察：没有接电源的金属杯为什么会发热？}
+
+\begin{shiyan}[演示实验]
+\noindent\begin{minipage}[c]{0.63\linewidth}
+如图\ref{fig:cup}所示，在可拆变压器的铁芯上绕一组线圈，线圈上端放一个盛有冷水的\textbf{金属杯}，线圈接交流电源。
+\begin{itemize}[leftmargin=1.4em,label=\textbullet]
+  \item 接通电源几分钟后，杯中的水变热，甚至沸腾；
+  \item 把金属杯换成同样大小的\textbf{瓷杯（或玻璃杯）}，水几乎不变热；
+  \item 线圈改接\textbf{直流}电源（电流稳定后），金属杯也不会持续发热。
+\end{itemize}
+\textbf{思考}：金属杯既没有与电源相连，也没有导线与线圈相接，它为什么会发热？
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.33\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.85]
+  % 铁芯与线圈
+  \fill[ironc] (-0.32,0) rectangle (0.32,2.35);
+  \fill[copper!45] (-0.75,0.15) rectangle (0.75,2.05);
+  \foreach \y in {0.25,0.43,...,2.0}
+    \draw[copper!95!black,line width=0.55pt] (-0.75,\y) -- (0.75,\y+0.1);
+  \draw[line width=0.5pt] (-0.75,0.15) rectangle (0.75,2.05);
+  % 金属杯与水
+  \fill[metal!80] (-0.62,2.35) -- (0.62,2.35) -- (0.72,3.25) -- (-0.72,3.25) -- cycle;
+  \fill[blue!25] (-0.56,2.42) -- (0.56,2.42) -- (0.63,3.02) -- (-0.63,3.02) -- cycle;
+  \draw[line width=0.6pt] (-0.72,3.25) -- (-0.62,2.35) -- (0.62,2.35) -- (0.72,3.25);
+  % 蒸汽
+  \foreach \x in {-0.3,0.05,0.4}
+    \draw[gray!70,decorate,decoration={snake,amplitude=1.2pt,segment length=6pt}] (\x,3.35) -- (\x,3.85);
+  % 电源
+  \draw[line width=0.5pt] (-1.5,0.88) -- (-1.5,0.4) -- (-0.75,0.4);
+  \draw[line width=0.5pt] (-1.5,1.32) -- (-1.5,1.8) -- (-0.75,1.8);
+  \draw[fill=white,line width=0.5pt] (-1.5,1.1) circle (0.22);
+  \node[font=\scriptsize] at (-1.5,1.1) {$\sim$};
+  \node[font=\scriptsize] at (1.25,2.8) {金属杯};
+  \node[font=\scriptsize] at (1.2,1.5) {线圈};
+  \node[font=\scriptsize] at (0,-0.15) {铁芯};
+\end{tikzpicture}
+\captionof{figure}{金属杯中的水被加热}\label{fig:cup}
+\end{minipage}
+\end{shiyan}
+
+\subsection{涡流的概念}
+
+\begin{zhishi}[涡流（涡电流）]
+当线圈中的电流随时间变化时，线圈附近的任何导体中都会产生感应电流。如果用图表示这样的感应电流，看起来就像水中的旋涡，所以把它叫作\key{涡电流}，简称\key{涡流}。
+
+更一般地说，只要穿过\textbf{整块导体}内部某一闭合回路的\textbf{磁通量发生变化}（磁场变化，或导体相对磁场运动），导体内部就会产生涡流。
+\end{zhishi}
+
+\begin{center}
+\begin{tikzpicture}
+% ---- (a) 侧视：螺线管中的金属圆柱 ----
+\begin{scope}
+  \fill[metal] (-0.7,-0.2) rectangle (0.7,2.6);
+  \shade[left color=gray!50,right color=gray!50,middle color=gray!10] (-0.7,-0.2) rectangle (0.7,2.6);
+  \fill[gray!20] (0,2.6) ellipse (0.7 and 0.2);
+  \draw[line width=0.5pt] (0,2.6) ellipse (0.7 and 0.2);
+  \draw[line width=0.5pt] (-0.7,-0.2) -- (-0.7,2.6) (0.7,-0.2) -- (0.7,2.6);
+  \draw[line width=0.5pt] (-0.7,-0.2) arc (180:360:0.7 and 0.2);
+  % 线圈（前半圈实线，带电流方向：俯视逆时针 → 前侧向右）
+  \foreach \y in {0.15,0.55,...,2.2}{
+    \draw[copper!90!black,line width=1.1pt] (-0.95,\y+0.12) .. controls (-0.6,\y-0.16) and (0.6,\y-0.16) .. (0.95,\y+0.12);}
+  \draw[cur] (-0.25,0.92) -- (0.3,0.92);
+  \node[Icur!85!black,font=\footnotesize] at (-1.55,1.2) {$I$};
+  \node[Icur!85!black,font=\scriptsize] at (-1.55,0.85) {增大};
+  \draw[bline,->,line width=1pt] (0,2.75) -- (0,3.45) node[right,font=\footnotesize] {$B$};
+  \node[font=\small] at (0,-0.75) {(a)\ 线圈中的金属块};
+\end{scope}
+% ---- (b) 俯视截面：涡流沿同心圆流动 ----
+\begin{scope}[xshift=5.2cm,yshift=1.3cm]
+  \draw[copper!90!black,line width=1.6pt,midarrow=0.12] (0,0) circle (1.42);
+  \fill[metal] (0,0) circle (1.12);
+  \draw[line width=0.5pt] (0,0) circle (1.12);
+  \foreach \r in {0.35,0.65,0.95}
+    \draw[Icur,line width=1pt,postaction={decorate},decoration={markings,
+      mark=at position 0.375 with {\arrowreversed{Stealth[length=5pt,width=4pt]}},
+      mark=at position 0.875 with {\arrowreversed{Stealth[length=5pt,width=4pt]}}}] (0,0) circle (\r);
+  \foreach \p in {(-0.5,0.5),(0.5,-0.5),(0.5,0.5),(-0.5,-0.5),(0,0)} \pic at \p {Bout};
+  \node[Icur!85!black,font=\footnotesize] at (1.75,1.1) {线圈电流};
+  \node[Icur!85!black,font=\footnotesize] at (1.75,-1.15) {涡流};
+  \draw[lbl,gray] (1.35,-1.0) -- (0.72,-0.6);
+  \node[font=\small] at (0,-2.05) {(b)\ 俯视截面（$B$ 向上且增大）};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{线圈中电流增大时，金属块内产生涡流（涡流方向与线圈电流方向相反）}\label{fig:eddy}
+\end{center}
+
+\noindent 对涡流的理解，可以概括为以下几点：
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item \textbf{本质}：涡流就是感应电流，是电磁感应现象，遵循法拉第电磁感应定律和楞次定律。整块导体可以看成由许多闭合回路组成，因此\textbf{涡流不需要导线连接，在导体内部自成回路}。
+  \item \textbf{产生条件}：①整块导体（金属块）；②穿过导体内部回路的磁通量发生变化。二者缺一不可。
+  \item \textbf{方向}：用楞次定律判断。对图\ref{fig:eddy}这样同轴的情形，线圈中电流\textbf{增大}时，涡流与线圈电流方向\textbf{相反}；线圈中电流\textbf{减小}时，涡流与线圈电流方向\textbf{相同}（“增反减同”）。
+  \item \textbf{大小}：整块金属的电阻很小，所以涡流往往很强。
+\end{enumerate}
+
+\subsection{涡流的三种效应}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\sffamily\bfseries\centering\arraybackslash}m{1.6cm} Y Y}
+\toprule
+\textbf{效应} & \multicolumn{1}{c}{\textbf{原理}} & \multicolumn{1}{c}{\textbf{典型应用 / 危害}} \\
+\midrule
+热效应 & 涡流通过导体时产生焦耳热，$Q=I^2Rt$ & 利用：真空冶炼炉、电磁炉、高频焊接与淬火\newline 危害：变压器、电机铁芯发热（涡流损耗） \\
+磁效应 & 涡流产生的磁场总要阻碍原磁通量的变化，并反过来影响原线圈中的电流 & 金属探测器、安检门、探雷器、涡流探伤、地感线圈 \\
+力效应 & 涡流在磁场中受安培力作用，总是阻碍导体与磁场的相对运动 & 电磁阻尼（仪表阻尼、电磁刹车）、电磁驱动（感应电动机）——见第三、四部分 \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{涡流的三种效应}
+\end{center}
+
+\subsection{影响涡流强弱的因素}
+
+由 $E=n\dfrac{\dd\Phi}{\dd t}$ 和 $I=\dfrac{E}{R}$ 可知，涡流的强弱取决于\textbf{感应电动势的大小}和\textbf{涡流回路的电阻}：
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item \textbf{磁场变化的快慢}：交变电流的\key{频率越高}、磁场越强，磁通量变化率越大，涡流越强。这就是感应加热设备都使用\textbf{高频}交变电流的原因。
+  \item \textbf{导体的电阻率}：电阻率\key{越小}（导电性能越好），涡流越强。
+  \item \textbf{导体的形状和尺寸}：垂直于磁场方向的截面越大，涡流回路所围面积越大，感应电动势越大，涡流越强；若把导体分割成相互绝缘的\key{薄片}，或在导体上\key{开缝}，就切断了大回路，涡流会显著减小。
+\end{enumerate}
+
+\begin{liti}[2014·江苏卷]
+（多选）如图\ref{fig:cup}所示，在线圈上端放置一盛有冷水的金属杯，现接通交流电源，过了几分钟，杯内的水沸腾起来。若要缩短上述加热时间，下列措施可行的有\kuohao{AB}
+\xx{增加线圈的匝数}{提高交流电源的频率}{将金属杯换为瓷杯}{取走线圈中的铁芯}
+\begin{jiexi}[2cm]
+金属杯处在线圈产生的交变磁场中，杯中产生涡流而发热。要缩短加热时间，就要增大涡流的热功率，即增大金属杯中的感应电动势。增加线圈的匝数，线圈产生的磁场增强，磁通量的变化率增大，A可行；提高交流电源的频率，磁场变化加快，磁通量的变化率增大，B可行；瓷杯是绝缘体，不能产生涡流，C不可行；取走铁芯，磁场大大减弱，D不可行。
+\end{jiexi}
+\daan{AB}
+\end{liti}
+
+\begin{liti}
+电磁炉锅底中的涡流可以简化为许多同心的闭合圆环电流。取锅底中半径为 $r$、电阻为 $R$ 的一个单匝圆环来研究：设磁场垂直于环面，磁感应强度按 $B=B_{\mathrm m}\sin(2\pi ft)$ 的规律变化。已知：当穿过线圈的磁通量按 $\Phi=\Phi_{\mathrm m}\sin\omega t$ 变化时，感应电动势的最大值 $E_{\mathrm m}=\omega\Phi_{\mathrm m}$。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item 求圆环中感应电动势的最大值及圆环的发热功率；
+  \item 若只把磁场变化的频率提高为原来的 2 倍，圆环的发热功率变为原来的多少倍？
+  \item 若圆环是用横截面积为 $S_0$、电阻率为 $\rho$ 的金属丝制成的，求圆环\textbf{单位体积}的发热功率，并据此说明：为什么电磁炉要使用高频交变电流？为什么变压器铁芯要用电阻率较大的硅钢薄片叠成？
+\end{enumerate}
+\begin{jiexi}[5cm]
+（1）圆环的磁通量最大值 $\Phi_{\mathrm m}=B_{\mathrm m}\cdot\pi r^2$，$\omega=2\pi f$，所以
+\[E_{\mathrm m}=\omega\Phi_{\mathrm m}=2\pi^2 fB_{\mathrm m}r^2 .\]
+感应电动势按正弦规律变化，有效值 $E=\dfrac{E_{\mathrm m}}{\sqrt2}$，发热功率
+\[P=\frac{E^2}{R}=\frac{E_{\mathrm m}^2}{2R}=\frac{2\pi^4f^2B_{\mathrm m}^2r^4}{R} .\]
+
+（2）由 $P\propto f^2$ 可知，频率提高为原来的 2 倍，发热功率变为原来的 \textbf{4 倍}。
+
+（3）圆环的电阻 $R=\rho\dfrac{2\pi r}{S_0}$，体积 $V=2\pi r\cdot S_0$，所以单位体积的发热功率
+\[\frac{P}{V}=\frac{2\pi^4f^2B_{\mathrm m}^2r^4}{\rho\dfrac{2\pi r}{S_0}\cdot 2\pi rS_0}=\frac{\pi^2f^2B_{\mathrm m}^2r^2}{2\rho} .\]
+可见：①单位体积的涡流热功率与 $f^2$ 成正比，频率越高，发热越多，所以电磁炉、冶炼炉等都采用高频交变电流；②单位体积的涡流热功率与电阻率 $\rho$ 成反比、与涡流回路尺寸 $r$ 的平方成正比，所以变压器铁芯采用电阻率较大的硅钢，并做成相互绝缘的薄片，以限制涡流回路的尺寸，从而大大减小涡流损耗。
+\end{jiexi}
+\end{liti}
+
+\begin{tuozhan}[涡流损耗的定量规律]
+理论计算表明，在频率为 $f$、磁感应强度最大值为 $B_{\mathrm m}$ 的交变磁场中，厚度为 $d$ 的金属薄片（片面与磁感线平行）单位体积的涡流损耗功率为
+\[\frac{P}{V}=\frac{\pi^2f^2B_{\mathrm m}^2d^2}{6\rho} .\]
+它与例5的结论形式相同：$\dfrac{P}{V}\propto\dfrac{f^2B_{\mathrm m}^2d^2}{\rho}$。若把厚为 $D$ 的整块铁芯换成 $n$ 片相互绝缘的薄片（每片厚 $d=\dfrac Dn$），涡流损耗约减为原来的 $\dfrac{1}{n^2}$。
+
+此外，交变电流的频率越高，涡流越集中于导体的\textbf{表层}（\key{趋肤效应}）。工业上的\key{高频淬火}正是利用这一点：用高频电流只把钢件的表层迅速加热，再快速冷却，使表层坚硬耐磨而内部仍保持韧性。
+\end{tuozhan}
+
+\subsection{涡流的利用}
+
+\subsubsection{利用涡流的热效应}
+
+\noindent\textbf{1．真空冶炼炉}
+
+\noindent\begin{minipage}[c]{0.6\linewidth}
+\textbf{结构}：炉外绕有线圈（通常用通水冷却的空心铜管绕成），线圈中通入高频（或中频）交变电流；炉内的坩埚中放有待冶炼的金属，整个炉体被抽成真空。
+
+\textbf{原理}：线圈中的高频交变电流产生高频交变磁场，坩埚内的金属中产生很强的涡流，涡流产生的热量使金属熔化。
+
+\textbf{优点}：①冶炼在\textbf{真空}中进行，可防止空气中的杂质进入金属、避免金属被氧化，能冶炼高质量的合金；②热量直接在金属\textbf{内部}产生，加热快、效率高、温度容易控制；③涡流受到的电磁力还能\textbf{搅拌}熔化的金属，使其成分均匀。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.37\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.82]
+  % 真空室
+  \draw[line width=0.8pt,fill=gray!6,rounded corners=3pt] (-2.0,-0.3) rectangle (2.0,3.1);
+  \draw[line width=0.8pt] (1.2,3.1) -- (1.2,3.6) (1.5,3.1) -- (1.5,3.6);
+  \node[font=\scriptsize,align=center] at (1.35,3.95) {接真空泵};
+  % 坩埚
+  \fill[gray!35] (-1.0,0.25) rectangle (1.0,2.55);
+  \fill[white] (-0.78,0.47) rectangle (0.78,2.55);
+  % 熔融金属
+  \shade[top color=orange!70,bottom color=red!75] (-0.78,0.47) rectangle (0.78,1.85);
+  \foreach \y in {0.85,1.45} \draw[Icur!30!yellow,line width=0.7pt] (0,\y) ellipse (0.6 and 0.13);
+  \node[font=\scriptsize,white] at (0,1.15) {金属};
+  % 线圈截面
+  \foreach \y in {0.45,0.8,...,2.3}{
+    \pic at (-1.3,\y) {Iout}; \pic at (1.3,\y) {Iin};}
+  \node[font=\scriptsize] at (-1.55,2.75) {线圈};
+  \node[font=\scriptsize] at (0.0,2.75) {坩埚};
+  % 电源
+  \draw[line width=0.5pt] (-1.3,0.45) -- (-1.3,-0.7) -- (-0.35,-0.7);
+  \draw[line width=0.5pt] (1.3,0.45) -- (1.3,-0.7) -- (0.35,-0.7);
+  \draw[fill=white,line width=0.5pt] (0,-0.7) circle (0.35);
+  \node[font=\scriptsize] at (0,-0.7) {$\sim$};
+  \node[font=\scriptsize] at (0,-1.3) {高频交流电源};
+\end{tikzpicture}
+\captionof{figure}{真空冶炼炉示意图}
+\end{minipage}
+
+\medskip
+\noindent\textbf{2．电磁炉}
+
+\noindent\begin{minipage}[c]{0.5\linewidth}
+\textbf{结构}：灶内有一个用多股漆包线绕成的平面螺旋\textbf{线圈}，线圈下方放有铁氧体磁条；线圈上方是耐热的\textbf{陶瓷（微晶玻璃）面板}，锅放在面板上。
+
+\textbf{原理}：控制电路把 \qty{50}{Hz} 的市电变成频率为几十千赫兹的\textbf{高频交变电流}通入线圈，线圈产生的高频交变磁场穿过锅底，在锅底中产生强大的\textbf{涡流}，使锅底自身迅速发热，从而加热食物。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.88]
+  % 锅
+  \fill[gray!55] (-2.3,0.62) -- (2.3,0.62) -- (2.45,2.0) -- (2.25,2.0) -- (2.1,0.82) -- (-2.1,0.82) -- (-2.25,2.0) -- (-2.45,2.0) -- cycle;
+  \fill[blue!12] (-2.1,0.82) -- (2.1,0.82) -- (2.2,1.65) -- (-2.2,1.65) -- cycle;
+  \node[font=\scriptsize] at (0,1.3) {食物};
+  % 面板
+  \fill[gray!12] (-2.7,0.3) rectangle (2.7,0.55);
+  \draw[line width=0.4pt] (-2.7,0.3) rectangle (2.7,0.55);
+  % 磁感线：穿过锅底，经磁条闭合（左侧逆时针、右侧顺时针）
+  \foreach \a/\b in {0.62/0.42,0.95/0.55,1.28/0.64}{
+    \draw[bline,line width=0.55pt,postaction={decorate},decoration={markings,
+      mark=at position 0.25 with {\arrow{Stealth[length=4pt,width=3pt]}}}] (-1.55,0.18) ellipse ({\a} and {\b});
+    \draw[bline,line width=0.55pt,postaction={decorate},decoration={markings,
+      mark=at position 0.25 with {\arrowreversed{Stealth[length=4pt,width=3pt]}}}] (1.55,0.18) ellipse ({\a} and {\b});}
+  % 锅底涡流（某时刻）
+  \foreach \x in {-1.9,-1.45,-1.0} \pic at (\x,0.72) {Iin};
+  \foreach \x in {1.0,1.45,1.9} \pic at (\x,0.72) {Iout};
+  % 线圈截面与磁条
+  \foreach \x in {-2.0,-1.7,...,-1.1} {\fill[copper] (\x,0.1) circle (0.11); \fill[white] (\x,0.1) circle (0.04);}
+  \foreach \x in {1.1,1.4,...,2.0} {\fill[copper] (\x,0.1) circle (0.11);
+    \draw[white,line width=0.4pt] (\x-0.05,0.05) -- (\x+0.05,0.15) (\x-0.05,0.15) -- (\x+0.05,0.05);}
+  \fill[black!70] (-2.2,-0.22) rectangle (2.2,-0.1);
+  % 中心磁场方向
+  \draw[bline,->,line width=0.9pt] (0,-0.15) -- (0,0.5);
+  % 标注
+  \node[font=\scriptsize] at (3.05,1.6) {锅};
+  \draw[lbl,gray] (2.85,0.43) -- (3.1,0.6) node[right,black,font=\scriptsize] {面板};
+  \draw[lbl,gray] (2.05,0.0) -- (3.1,-0.1) node[right,black,font=\scriptsize] {线圈};
+  \draw[lbl,gray] (2.15,-0.2) -- (3.1,-0.55) node[right,black,font=\scriptsize] {磁条};
+  \node[font=\scriptsize,Icur!85!black] at (-3.15,0.75) {涡流};
+  \draw[lbl,gray] (-2.8,0.75) -- (-2.05,0.72);
+  \node[font=\scriptsize,Bline] at (-3.25,-0.4) {磁感线};
+\end{tikzpicture}
+\captionof{figure}{电磁炉结构与原理示意图}
+\end{minipage}
+
+\smallskip
+\noindent\textbf{特点}：热量直接在锅底产生，热效率高、加热快；无明火、无烟尘，安全清洁；面板本身不产生涡流，只是被热锅“捂”热。
+
+\noindent\textbf{对锅具的要求}：
+\begin{center}
+\small
+\begin{tabularx}{0.96\linewidth}{>{\centering\arraybackslash}m{3.3cm} >{\centering\arraybackslash}m{1.6cm} Y}
+\toprule
+\textbf{锅具} & \textbf{能否使用} & \multicolumn{1}{c}{\textbf{原因}} \\
+\midrule
+铁锅、铸铁锅、导磁不锈钢锅 & 能 & 是导体，能产生涡流；又是铁磁性材料，能把磁场“聚集”在锅底，发热效果好 \\
+陶瓷锅、玻璃锅、砂锅 & 不能 & 是绝缘体，不能产生涡流 \\
+铝锅、铜锅 & 一般不能 & 不是铁磁性材料且电阻率很小，普通电磁炉难以有效加热 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\textbf{3．其他感应加热}：\key{高频焊接}（如钢管接缝的焊接，管道通过接有高频交流电源的线圈，接缝处的涡流热使材料熔化而焊在一起）、\key{高频淬火}、IH 电饭煲等，原理都是利用涡流的热效应。
+
+\subsubsection{利用涡流的磁效应}
+
+\noindent\begin{minipage}[c]{0.58\linewidth}
+\noindent\textbf{1．金属探测器、安检门、探雷器}
+
+探测器内的线圈中通有\textbf{变化的电流}（交变或脉冲电流），产生变化的磁场。如果附近有\textbf{金属}，金属中就会产生\textbf{涡流}；涡流的磁场反过来影响探测器线圈中的电流（或使另一接收线圈中产生感应电动势），使仪器发出报警信号。
+
+\noindent\note{要点：①只能探测导体（金属），不能探测塑料、陶瓷等绝缘体；②探测线圈中必须通变化的电流，恒定电流无法探测静止的金属；③被测金属的电阻率越小、体积越大、距离越近，涡流越强，越容易被探测到。}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.39\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.92]
+  % 地面
+  \fill[brown!18] (-2.2,-1.75) rectangle (2.2,-0.6);
+  \draw[brown!60!black,line width=0.6pt] (-2.2,-0.6) -- (2.2,-0.6);
+  % 线圈与手柄
+  \draw[line width=0.7pt] (0.15,0.45) -- (1.4,1.8);
+  \draw[line width=1.4pt] (1.4,1.8) -- (1.75,2.15);
+  \fill[gray!25] (0,0.3) ellipse (1.0 and 0.22);
+  \draw[copper!90!black,line width=1.6pt] (0,0.3) ellipse (1.0 and 0.22);
+  % 线圈的磁场
+  \foreach \s in {0.55,0.95}{
+    \draw[bline,line width=0.55pt] (0,0.3) .. controls (-\s,-0.6) and (-\s-0.2,-1.0) .. (-\s-0.6,-0.2);
+    \draw[bline,line width=0.55pt] (0,0.3) .. controls (\s,-0.6) and (\s+0.2,-1.0) .. (\s+0.6,-0.2);}
+  \draw[bline,->,line width=0.8pt] (0,0.15) -- (0,-0.7);
+  % 金属物体与涡流
+  \fill[metal!90] (-0.55,-1.45) rectangle (0.55,-1.1);
+  \draw[line width=0.4pt] (-0.55,-1.45) rectangle (0.55,-1.1);
+  \draw[Icur,line width=0.9pt,midarrow] (0,-1.27) ellipse (0.38 and 0.1);
+  % 涡流的磁场（虚线）
+  \draw[Icur,dashed,line width=0.6pt] (-0.25,-1.1) .. controls (-0.5,-0.5) and (-0.4,0.0) .. (-0.2,0.15);
+  \draw[Icur,dashed,line width=0.6pt] (0.25,-1.1) .. controls (0.5,-0.5) and (0.4,0.0) .. (0.2,0.15);
+  \node[font=\scriptsize,align=center] at (-1.45,0.85) {探测线圈\\（通交变电流）};
+  \node[font=\scriptsize,Icur!85!black] at (1.5,-1.25) {金属中的涡流};
+\end{tikzpicture}
+\captionof{figure}{金属探测器原理示意图}
+\end{minipage}
+
+\medskip
+\noindent\textbf{2．涡流探伤}：检测线圈中通交变电流，靠近金属工件时在工件表面产生涡流。工件表面或近表面若有裂纹、气孔等缺陷，涡流的分布会发生改变，检测线圈中的电信号随之变化，由此可以\textbf{不破坏工件}地发现缺陷。常用于飞机、铁轨、管道等的安全检测。
+
+\noindent\textbf{3．地感线圈}：埋在路面下的线圈中通有交变电流。汽车驶到线圈上方时，车底金属中产生涡流，使线圈的电学参数发生变化，从而检测到车辆，用于控制信号灯、停车场道闸和“电子警察”抓拍等。
+
+\begin{liti}
+（多选）涡流在生产、生活中有广泛的应用。下列说法正确的是\kuohao{BD}
+\xx{电磁炉是利用线圈中电流产生的焦耳热来加热食物的}%
+{真空冶炼炉的线圈中通入高频交变电流，使炉内金属中产生涡流而熔化}%
+{用金属探测器可以检测出乘客携带的塑料瓶、陶瓷刀具等物品}%
+{用于探测地下金属管道的探测器，其线圈中通的是变化的电流}
+\begin{jiexi}[2cm]
+电磁炉是利用线圈产生的高频交变磁场在锅底中产生涡流，由锅底自身发热来加热食物的，并不是靠线圈的焦耳热，A错误；真空冶炼炉中，高频交变电流产生的高频交变磁场使炉内金属中产生涡流而熔化，B正确；塑料、陶瓷是绝缘体，不能产生涡流，金属探测器无法检测，C错误；金属探测器的线圈中通的是变化的电流，以产生变化的磁场，D正确。
+\end{jiexi}
+\daan{BD}
+\end{liti}
+
+\begin{yicuo}
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item \textbf{电磁炉 $\ne$ 微波炉}。电磁炉利用涡流使\textbf{金属锅}发热；微波炉利用微波使食物中的水分子剧烈振动而发热，金属容器\textbf{不能}放入微波炉中加热。
+  \item 电磁炉的线圈、面板都不是热源，热量产生于\textbf{锅底}；锅离开面板后加热即停止。
+  \item 静止的金属放在\textbf{恒定}磁场中不产生涡流；金属在\textbf{匀强}磁场中平动，穿过其内部任一回路的磁通量都不变，也不产生涡流。
+\end{enumerate}
+\end{yicuo}
+
+\subsection{涡流的防止}
+
+\noindent\textbf{1．涡流的危害}：电动机、变压器的线圈都绕在铁芯上，线圈中流过变化的电流，铁芯中就会产生涡流。涡流使铁芯发热，不仅\textbf{浪费能量}（称为涡流损耗），降低设备的效率，还可能使温度过高而损坏线圈的绝缘材料。
+
+\noindent\textbf{2．减小涡流的方法}：
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item \textbf{增大材料的电阻率}：用硅钢（在钢中掺入少量硅）代替普通钢，电阻率大大增大。
+  \item \textbf{用相互绝缘的薄片叠成铁芯}：把硅钢做成厚度只有零点几毫米的薄片，表面涂上绝缘漆，再叠压成铁芯，片面要与磁感线方向\textbf{平行}。这样，涡流被限制在每一薄片内的狭窄回路中，回路所围面积小（感应电动势小），而回路的电阻又大，涡流大为减弱。
+  \item \textbf{高频时用铁氧体磁芯}：铁氧体是电阻率极大的磁性材料，常用于开关电源（如手机充电器）中的高频变压器。
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[x={(1cm,0cm)},y={(0cm,1cm)},z={(0.42cm,0.3cm)}]
+\def\coreblock#1{%
+  \begin{scope}[xshift=#1]
+  \fill[ironc!55] (0,0,0) -- (2.2,0,0) -- (2.2,1.6,0) -- (0,1.6,0) -- cycle;
+  \fill[ironc!35] (0,1.6,0) -- (2.2,1.6,0) -- (2.2,1.6,2.4) -- (0,1.6,2.4) -- cycle;
+  \fill[ironc!80] (2.2,0,0) -- (2.2,0,2.4) -- (2.2,1.6,2.4) -- (2.2,1.6,0) -- cycle;
+  \draw[line width=0.5pt] (0,0,0) -- (2.2,0,0) -- (2.2,1.6,0) -- (0,1.6,0) -- cycle
+    (0,1.6,0) -- (0,1.6,2.4) -- (2.2,1.6,2.4) -- (2.2,1.6,0) (2.2,1.6,2.4) -- (2.2,0,2.4) -- (2.2,0,0);
+  \end{scope}}
+% (a) 整块铁芯
+\coreblock{0cm}
+\foreach \s in {0.3,0.55,0.8}
+  \draw[Icur,line width=0.9pt,midarrow=0.3] (1.1-\s*1.1,0.8-\s*0.8,0) rectangle (1.1+\s*1.1,0.8+\s*0.8,0);
+\draw[bline,->,line width=1pt] (1.1,0.8,0) -- (1.1,0.8,-1.1) node[below,font=\footnotesize] {$B$};
+\node[font=\small] at (1.4,-0.85,0) {(a)\ 整块铁芯：涡流大};
+% (b) 叠片铁芯
+\coreblock{5.6cm}
+\begin{scope}[xshift=5.6cm]
+  \foreach \i in {1,...,7}{
+    \pgfmathsetmacro\xi{\i*2.2/8}
+    \draw[white,line width=1.3pt] (\xi,0,0) -- (\xi,1.6,0) -- (\xi,1.6,2.4);}
+  \foreach \i in {0,...,7}{
+    \pgfmathsetmacro\xa{\i*2.2/8+0.075}
+    \pgfmathsetmacro\xb{(\i+1)*2.2/8-0.075}
+    \draw[Icur,line width=0.6pt] (\xa,0.18,0) rectangle (\xb,1.42,0);}
+  \draw[bline,->,line width=1pt] (1.1,0.8,0) -- (1.1,0.8,-1.1) node[below,font=\footnotesize] {$B$};
+  \node[font=\small] at (1.4,-0.85,0) {(b)\ 绝缘硅钢片叠成：涡流小};
+\end{scope}
+\end{tikzpicture}
+\captionof{figure}{整块铁芯与叠片铁芯中的涡流（磁感线垂直于正面，片面与磁感线平行）}\label{fig:lamination}
+\end{center}
+
+\noindent\note{思考：既然铁芯中会产生涡流，为什么不干脆去掉铁芯？——铁芯能使线圈中的磁场大大增强，并把磁感线约束在铁芯内，减少漏磁，从而大大提高变压器、电动机的效率。所以既要用“导磁”的铁芯，又要设法减小其中的涡流。}
+
+\begin{liti}
+（多选）变压器某段铁芯中的磁感线沿图中 $B$ 的方向。下列三种铁芯：甲为整块铁芯；乙由相互绝缘的硅钢片叠成，片面与磁感线\textbf{垂直}；丙由相互绝缘的硅钢片叠成，片面与磁感线\textbf{平行}。下列说法正确的是\kuohao{AC}
+
+\begin{center}
+\begin{tikzpicture}[x={(1cm,0cm)},y={(0cm,1cm)},z={(0.38cm,0.27cm)},scale=0.8]
+\def\corebar#1{%
+  \fill[ironc!55] (0,0,0) -- (3,0,0) -- (3,1,0) -- (0,1,0) -- cycle;
+  \fill[ironc!35] (0,1,0) -- (3,1,0) -- (3,1,1) -- (0,1,1) -- cycle;
+  \fill[ironc!80] (3,0,0) -- (3,0,1) -- (3,1,1) -- (3,1,0) -- cycle;
+  \draw[line width=0.45pt] (0,0,0) -- (3,0,0) -- (3,1,0) -- (0,1,0) -- cycle (0,1,0) -- (0,1,1) -- (3,1,1) -- (3,1,0)
+    (3,1,1) -- (3,0,1) -- (3,0,0);
+  \draw[bline,->,line width=0.9pt] (3.15,0.5,0.5) -- (4.0,0.5,0.5) node[right,font=\footnotesize] {$B$};
+  \node[font=\small] at (1.5,-0.45,0) {#1};}
+\begin{scope}\corebar{甲}\end{scope}
+\begin{scope}[xshift=5.4cm]
+  \corebar{乙}
+  \foreach \i in {1,...,9}{\draw[white,line width=0.9pt] (\i*0.3,0,0) -- (\i*0.3,1,0) -- (\i*0.3,1,1);}
+\end{scope}
+\begin{scope}[xshift=10.8cm]
+  \corebar{丙}
+  \foreach \i in {1,...,4}{\draw[white,line width=0.9pt] (0,\i*0.2,0) -- (3,\i*0.2,0) -- (3,\i*0.2,1);}
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\xx{甲中的涡流较大，铁芯发热较严重}%
+{乙中片间的绝缘层切断了涡流的回路，能有效减小涡流}%
+{丙中涡流被限制在每一薄片内的狭窄回路中，能有效减小涡流}%
+{为了减小涡流损耗，最好的办法是去掉铁芯}
+\begin{jiexi}[2.5cm]
+铁芯中的涡流在\textbf{垂直于磁感线}的平面内流动。甲为整块铁芯，涡流回路大、电阻小，涡流较大，发热较严重，A正确。乙中硅钢片的片面与磁感线垂直，每一片恰好就是涡流流动的平面，绝缘层没有切断涡流回路，不能有效减小涡流，B错误。丙中片面与磁感线平行，绝缘层切断了垂直于磁感线的大回路，涡流只能在每一薄片内的狭窄回路中流动，涡流大大减小，C正确。铁芯的作用是增强磁场、减少漏磁，去掉铁芯会大大降低效率，D错误。
+\end{jiexi}
+\daan{AC}
+\end{liti}

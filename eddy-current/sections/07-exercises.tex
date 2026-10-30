@@ -1,0 +1,307 @@
+%======================================================================
+%  07 课后练习
+%======================================================================
+\ifteacher\clearpage\fi
+\section{课后练习}
+
+\ifteacher\noindent\note{（教师版：选择题答案已标在括号内，详细解析见“参考答案与解析”。）}\fi
+
+\subsection*{A组　基础巩固}
+
+\begin{enumerate}[label=\arabic*．,leftmargin=1.8em,itemsep=6pt]
+
+%------------------------------------------------ 1
+\item （2020·全国卷Ⅱ）管道高频焊机可以对由钢板卷成的圆管的接缝实施焊接。焊机的原理如图所示，圆管通过一个接有高频交流电源的线圈，线圈所产生的交变磁场使圆管中产生交变电流，电流产生的热量使接缝处的材料熔化将其焊接。焊接过程中所利用的电磁学规律的发现者为\kuohao{D}
+
+\noindent\begin{minipage}[c]{0.5\linewidth}
+\xx{库仑}{霍尔}{洛伦兹}{法拉第}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.78]
+  \fill[gray!22] (0,-0.5) rectangle (5,0.5);
+  \fill[gray!35] (5,0) ellipse (0.18 and 0.5);
+  \draw[line width=0.5pt] (0,0.5) -- (5,0.5) (0,-0.5) -- (5,-0.5);
+  \draw[line width=0.5pt] (5,0) ellipse (0.18 and 0.5);
+  \draw[line width=0.5pt] (0,0.5) arc (90:270:0.18 and 0.5);
+  \draw[line width=0.5pt] (0,0.36) -- (2.55,0.3) (0,0.24) -- (2.55,0.3);
+  \draw[red!75!black,line width=1.1pt] (2.55,0.3) -- (5,0.3);
+  \foreach \x in {1.95,2.2,...,3.0}
+    \draw[copper!90!black,line width=1.1pt] (\x,0) ellipse (0.16 and 0.7);
+  \draw[line width=0.5pt] (1.95,0.7) -- (1.95,1.25) -- (2.23,1.25);
+  \draw[line width=0.5pt] (2.95,0.7) -- (2.95,1.25) -- (2.67,1.25);
+  \draw[fill=white,line width=0.5pt] (2.45,1.25) circle (0.22);
+  \node[font=\scriptsize] at (2.45,1.25) {$\sim$};
+  \node[font=\scriptsize] at (3.95,1.3) {高频交流电源};
+  \node[font=\scriptsize] at (0.75,0.85) {接缝};
+  \draw[lbl,gray] (0.75,0.7) -- (0.9,0.33);
+  \node[font=\scriptsize] at (3.7,-0.85) {线圈};
+  \draw[lbl,gray] (3.4,-0.8) -- (3.0,-0.55);
+  \draw[->,line width=0.6pt] (0.3,-0.85) -- (1.3,-0.85);
+  \node[font=\scriptsize] at (0.8,-1.12) {圆管运动方向};
+\end{tikzpicture}
+\end{minipage}
+
+%------------------------------------------------ 2
+\item 下列做法中，属于\textbf{防止}涡流危害的是\kuohao{B}
+\xx{用电磁炉烹饪食物}{变压器的铁芯用相互绝缘的硅钢片叠成}{用真空冶炼炉冶炼合金}{用金属探测器进行安全检查}
+
+%------------------------------------------------ 3
+\item 关于电磁炉，下列说法正确的是\kuohao{B}
+\xx{电磁炉是利用变化的磁场在食物中产生涡流来加热食物的}%
+{电磁炉是利用变化的磁场在锅底中产生涡流，使锅底发热来加热食物的}%
+{电磁炉的线圈中通的是恒定电流}%
+{在电磁炉上用陶瓷锅加热食物，效果比铁锅更好}
+
+%------------------------------------------------ 4
+\item （多选）机场的安检门可以检测出旅客身上携带的金属物品。下列说法正确的是\kuohao{AC}
+\xx{安检门利用了涡流的原理}%
+{安检门线圈中通的是恒定电流}%
+{旅客携带塑料水杯通过安检门时，安检门不会因此报警}%
+{安检门能检测出金属物品，是因为金属都会被磁化而具有磁性}
+
+%------------------------------------------------ 5
+\item （多选）关于涡流，下列说法正确的是\kuohao{AD}
+\xx{涡流是一种感应电流，同样遵循法拉第电磁感应定律}%
+{块状金属静止在恒定磁场中时，也会产生涡流}%
+{涡流只有热效应，没有磁效应}%
+{在其他条件相同时，交变电流的频率越高，金属块中的涡流越大}
+
+%------------------------------------------------ 6
+\item 如图所示，竖直放置的螺线管正上方水平放置一块铝板，螺线管中通有从上往下看沿逆时针方向的电流。当电流逐渐增大时，下列说法正确的是\kuohao{A}
+
+\noindent\begin{minipage}[c]{0.68\linewidth}
+\xx{从上往下看，铝板中的涡流沿顺时针方向，铝板受到向上的斥力}%
+{从上往下看，铝板中的涡流沿逆时针方向，铝板受到向下的引力}%
+{从上往下看，铝板中的涡流沿顺时针方向，铝板受到向下的引力}%
+{铝板中不产生涡流，铝板不受磁场力}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+  \fill[alu] (-1.35,1.6) rectangle (1.35,1.8);
+  \draw[line width=0.5pt] (-1.35,1.6) rectangle (1.35,1.8);
+  \fill[copper!35] (-0.75,0) rectangle (0.75,1.35);
+  \foreach \y in {0.1,0.25,...,1.25} \draw[copper!95!black,line width=0.5pt] (-0.75,\y) -- (0.75,\y+0.08);
+  \draw[line width=0.5pt] (-0.75,0) rectangle (0.75,1.35);
+  \draw[cur] (-0.35,0.55) -- (0.35,0.6);
+  \node[Icur!85!black,font=\scriptsize] at (0,0.85) {$I$};
+  \node[font=\scriptsize] at (1.75,1.95) {铝板};
+  \node[font=\scriptsize] at (1.25,0.35) {螺线管};
+\end{tikzpicture}
+\end{minipage}
+
+%------------------------------------------------ 7
+\item （多选）如图\ref{fig:pendulum}所示的阻尼摆实验中，甲为实心铝板，乙为开有许多缝隙的梳状铝板，两摆锤从同一位置由静止释放，在磁铁两极间摆动。下列说法正确的是\kuohao{ABD}
+\xx{甲很快停止摆动，是因为铝板中产生涡流，受到阻碍其运动的安培力}%
+{乙摆动的时间较长，是因为缝隙切断了大部分涡流回路，涡流减小}%
+{若撤去磁场，两摆锤也都会很快停下来}%
+{甲摆动的过程中，机械能逐渐转化为内能}
+
+%------------------------------------------------ 8
+\item 一个圆柱形强磁体从竖直放置的足够长的铜管上端由静止释放，不计空气阻力，磁体与管壁不接触。磁体在铜管中下落的过程中\kuohao{C}
+\xx{做自由落体运动}%
+{做匀加速运动，加速度小于重力加速度}%
+{加速度逐渐减小，最终可能做匀速运动}%
+{机械能守恒}
+
+%------------------------------------------------ 9
+\item 如图所示，在绕有线圈的竖直铁芯上套一个闭合铝环，线圈通过开关 S 与直流电源相连。下列说法正确的是\kuohao{A}
+
+\noindent\begin{minipage}[c]{0.68\linewidth}
+\xx{闭合开关 S 的瞬间，铝环会跳起}%
+{开关 S 闭合并保持一段时间后，铝环将一直悬浮在空中}%
+{若把铝环换成有缺口的铝环，闭合开关 S 的瞬间它也会跳起}%
+{若把电源的正、负极对调，闭合开关 S 的瞬间铝环不会跳起}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+  \fill[ironc] (-0.18,0) rectangle (0.18,3.0);
+  \fill[copper!35] (-0.6,0.1) rectangle (0.6,1.4);
+  \foreach \y in {0.2,0.35,...,1.3} \draw[copper!95!black,line width=0.5pt] (-0.6,\y) -- (0.6,\y+0.07);
+  \draw[line width=0.5pt] (-0.6,0.1) rectangle (0.6,1.4);
+  \draw[gray!50!black,line width=2.2pt] (0,1.95) ellipse (0.48 and 0.13);
+  \fill[ironc] (-0.18,1.95) rectangle (0.18,2.08);
+  \node[font=\scriptsize] at (1.05,2.05) {铝环};
+  % 电路
+  \draw[line width=0.5pt] (-0.6,0.3) -- (-1.4,0.3) -- (-1.4,-0.55) -- (-0.68,-0.55);
+  \draw[line width=0.5pt] (-0.68,-0.35) -- (-0.68,-0.75);
+  \draw[line width=1.4pt] (-0.56,-0.45) -- (-0.56,-0.65);
+  \draw[line width=0.5pt] (-0.56,-0.55) -- (0.25,-0.55);
+  \fill (0.25,-0.55) circle (1.2pt); \fill (0.85,-0.55) circle (1.2pt);
+  \draw[line width=0.6pt] (0.25,-0.55) -- (0.78,-0.3);
+  \draw[line width=0.5pt] (0.85,-0.55) -- (1.4,-0.55) -- (1.4,0.3) -- (0.6,0.3);
+  \node[font=\scriptsize] at (0.55,-0.85) {S};
+\end{tikzpicture}
+\end{minipage}
+
+\end{enumerate}
+
+\subsection*{B组　能力提升}
+
+\begin{enumerate}[label=\arabic*．,leftmargin=1.8em,itemsep=6pt,resume]
+
+%------------------------------------------------ 10
+\item 电子感应加速器中，电磁铁线圈中通以正弦交变电流，两极间磁场的磁感应强度 $B$ 随时间 $t$ 变化的规律如图所示（规定竖直向上为 $B$ 的正方向）。已知电子在真空室中（俯视）沿逆时针方向做圆周运动，在一个周期内，电子能沿该轨道被加速的时间段是\kuohao{A}
+
+\noindent\begin{minipage}[c]{0.5\linewidth}
+\xx{$0\sim\dfrac T4$}{$\dfrac T4\sim\dfrac T2$}{$\dfrac T2\sim\dfrac{3T}4$}{$\dfrac{3T}4\sim T$}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.85]
+  \draw[->] (0,0) -- (4.6,0) node[below,font=\footnotesize] {$t$};
+  \draw[->] (0,-1.1) -- (0,1.2) node[left,font=\footnotesize] {$B$};
+  \draw[Bline,line width=0.9pt,domain=0:4,samples=80] plot (\x,{0.85*sin(90*\x)});
+  \foreach \x/\lab in {1/T\!/4,2/T\!/2,3/3T\!/4,4/T}{
+    \draw[gray,dashed,line width=0.3pt] (\x,-0.9) -- (\x,0.9);
+    \node[font=\footnotesize,below] at (\x,-0.95) {$\lab$};}
+  \node[font=\footnotesize,below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{minipage}
+
+%------------------------------------------------ 11
+\item （多选）如图所示，两个完全相同的铜盘都可以绕过圆心、垂直于盘面的轴转动。甲图中只有铜盘的一小部分处在磁场中；乙图中匀强磁场的范围足够大，垂直穿过整个铜盘。使两铜盘以相同的初角速度转动，不计摩擦和空气阻力，则\kuohao{ACD}
+
+\noindent\begin{minipage}[c]{0.56\linewidth}
+\xx{甲中铜盘会很快停下来}%
+{乙中铜盘也会很快停下来}%
+{乙中铜盘转动时，盘的圆心与边缘之间有电势差}%
+{甲中铜盘减少的动能转化为内能}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.78]
+  \begin{scope}
+    \fill[copper!55] (0,0) circle (1.0); \draw[line width=0.5pt] (0,0) circle (1.0);
+    \fill[Bline,opacity=0.18] (0.35,-0.4) rectangle (1.25,0.4);
+    \foreach \x in {0.55,1.0} \foreach \y in {-0.2,0.2} \pic at (\x,\y) {Bin};
+    \fill (0,0) circle (1.5pt);
+    \draw[Vvel,->,line width=0.7pt] (130:1.25) arc (130:200:1.25);
+    \node[font=\small] at (0,-1.45) {甲};
+  \end{scope}
+  \begin{scope}[xshift=3.0cm]
+    \fill[Bline,opacity=0.12] (-1.35,-1.25) rectangle (1.35,1.25);
+    \fill[copper!55] (0,0) circle (1.0); \draw[line width=0.5pt] (0,0) circle (1.0);
+    \foreach \x in {-1.1,-0.55,...,1.15} \foreach \y in {-1.05,-0.5,...,1.1} \pic at (\x,\y) {Bin};
+    \fill (0,0) circle (1.5pt);
+    \draw[Vvel,->,line width=0.7pt] (130:0.75) arc (130:200:0.75);
+    \node[font=\small] at (0,-1.45) {乙};
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+%------------------------------------------------ 12
+\item （多选）如图所示，光滑水平桌面上放有一个闭合铝环，一根竖直放置的条形磁铁（N 极向下）从铝环左上方水平向右快速掠过铝环正上方，磁铁与铝环不接触。在此过程中\kuohao{AC}
+
+\noindent\begin{minipage}[c]{0.62\linewidth}
+\xx{铝环将向右运动}%
+{铝环将向左运动}%
+{磁铁靠近铝环正上方的过程中，铝环对桌面的压力大于铝环的重力}%
+{磁铁离开铝环正上方的过程中，铝环对桌面的压力大于铝环的重力}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.36\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+  \fill[pattern=north east lines,pattern color=gray] (-2.0,-0.25) rectangle (2.0,-0.05);
+  \draw[line width=0.6pt] (-2.0,-0.05) -- (2.0,-0.05);
+  \draw[gray!50!black,line width=2pt] (0.3,0.1) ellipse (0.6 and 0.15);
+  \fill[blue!50] (-1.45,1.75) rectangle (-1.05,2.35);
+  \fill[red!60] (-1.45,1.15) rectangle (-1.05,1.75);
+  \node[white,font=\scriptsize\bfseries] at (-1.25,2.05) {S};
+  \node[white,font=\scriptsize\bfseries] at (-1.25,1.45) {N};
+  \draw[vel] (-0.9,1.75) -- (0.1,1.75) node[right,font=\footnotesize] {$v$};
+  \node[font=\scriptsize] at (1.35,0.45) {铝环};
+\end{tikzpicture}
+\end{minipage}
+
+%------------------------------------------------ 13
+\item 如图所示，足够长的光滑平行金属导轨水平放置，间距 $l=\qty{0.5}{m}$，左端接有阻值 $R=\qty{0.4}{\ohm}$ 的电阻，导轨处在竖直向下、磁感应强度 $B=\qty{0.4}{T}$ 的匀强磁场中。质量 $m=\qty{0.1}{kg}$、电阻 $r=\qty{0.1}{\ohm}$ 的导体棒 $ab$ 垂直导轨放置。某时刻给 $ab$ 一个水平向右的初速度 $v_0=\qty{5}{m/s}$，导轨电阻不计，$ab$ 始终与导轨垂直且接触良好。求：
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 刚开始运动时，$ab$ 两端的电压 $U$ 和 $ab$ 的加速度大小 $a$；
+  \item $ab$ 运动的总位移 $x$ 和整个过程中通过电阻 $R$ 的电荷量 $q$；
+  \item 整个过程中电阻 $R$ 上产生的焦耳热 $Q_R$；
+  \item $ab$ 的速度减为 \qty{2}{m/s} 时，它已经运动了多远。
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \Bfield{in}{0.5}{0.25}{4.1}{1.45}{0.6}{0.6}
+  \draw[line width=0.8pt] (0,0) -- (4.6,0) (0,1.7) -- (4.6,1.7);
+  \draw[line width=0.8pt] (0,0) -- (0,0.55) (0,1.15) -- (0,1.7);
+  \draw[fill=white,line width=0.6pt] (-0.13,0.55) rectangle (0.13,1.15);
+  \node[font=\scriptsize] at (-0.4,0.85) {$R$};
+  \draw[line width=2pt,gray!40!black] (2.2,-0.12) -- (2.2,1.82);
+  \node[font=\footnotesize] at (2.2,2.05) {$a$};
+  \node[font=\footnotesize] at (2.2,-0.35) {$b$};
+  \draw[vel] (2.3,0.85) -- (3.1,0.85) node[above,font=\footnotesize] {$v_0$};
+  \node[Bline,font=\footnotesize] at (4.35,1.95) {$B$};
+\end{tikzpicture}
+\end{center}
+\liukong{6cm}
+
+%------------------------------------------------ 14
+\item 某列车在平直轨道上以速度 $v_0$ 开始制动，制动初期只采用涡流制动，涡流制动力的大小 $F=kv$（$v$ 为列车速度，$k$ 为常量），列车质量为 $m$，其他阻力不计。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 求列车速度减为 $\dfrac{v_0}{2}$ 时加速度的大小；
+  \item 求列车速度由 $v_0$ 减为 $\dfrac{v_0}{2}$ 的过程中行驶的距离 $x_1$；
+  \item 列车速度减为 $\dfrac{v_0}{2}$ 时，撤去涡流制动，改用大小恒为 $f$ 的机械制动，求列车从开始制动到停止行驶的总距离 $x$；
+  \item 简要说明：为什么列车停车前的最后阶段不能只靠涡流制动？
+\end{enumerate}
+\liukong{6cm}
+
+\end{enumerate}
+
+\subsection*{C组　拓展创新}
+
+\begin{enumerate}[label=\arabic*．,leftmargin=1.8em,itemsep=6pt,resume]
+
+%------------------------------------------------ 15
+\item 如图所示，半径为 $R$ 的圆形区域内有垂直纸面向里的匀强磁场，磁感应强度随时间均匀增大，$\dfrac{\dd B}{\dd t}=k$（$k>0$）。
+
+\noindent\begin{minipage}[c]{0.66\linewidth}
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 在磁场区域内放一个与区域边界同心、半径为 $r$（$r<R$）的单匝导体圆环，圆环电阻为 $R_0$，求圆环中感应电流的大小和方向；
+  \item 若把圆环换成与区域边界同心、半径为 $2R$、电阻仍为 $R_0$ 的单匝圆环，求其中的感应电流；
+  \item 撤去圆环，求距圆心 $r$（$r<R$）处和 $2R$ 处感生电场强度的大小。
+\end{enumerate}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[Bline!7] (0,0) circle (1.3);
+  \draw[Bline!60,densely dashed] (0,0) circle (1.3);
+  \foreach \x in {-0.9,-0.45,...,0.91} \foreach \y in {-0.9,-0.45,...,0.91}{
+    \pgfmathtruncatemacro\inside{(\x*\x+\y*\y)<1.4}
+    \pgfmathtruncatemacro\onring{abs(sqrt(\x*\x+\y*\y)-0.7)<0.12}
+    \ifnum\inside=1 \ifnum\onring=0 \pic at (\x,\y) {Bin}; \fi\fi}
+  \draw[copper!90!black,line width=1.2pt] (0,0) circle (0.7);
+  \fill (0,0) circle (1.2pt);
+  \draw[->,line width=0.5pt] (0,0) -- (-30:1.3);
+  \node[font=\footnotesize] at (-30:1.6) {$R$};
+  \draw[->,line width=0.5pt] (0,0) -- (135:0.7);
+  \node[font=\footnotesize] at (135:0.98) {$r$};
+\end{tikzpicture}
+\end{minipage}
+\liukong{5cm}
+
+%------------------------------------------------ 16
+\item 电子感应加速器中，电子在半径为 $r$ 的圆形轨道上运动，轨道所围面积内的磁通量随时间均匀增大，变化率为 $\dfrac{\dd\Phi}{\dd t}=K$。电子电荷量为 $e$。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 求电子沿轨道绕行一周，感生电场力对它做的功 $W$；
+  \item 求电子轨道处感生电场强度的大小 $E_{\text{感}}$；
+  \item 若电子在加速过程中共绕行了 $N$ 圈，求电子增加的动能 $\dd E_{\mathrm k}$；
+  \item 为使电子的轨道半径保持不变，轨道处磁感应强度的变化率 $\dfrac{\dd B_r}{\dd t}$ 应为多大？
+\end{enumerate}
+\liukong{5cm}
+
+%------------------------------------------------ 17
+\item 理论计算表明，厚度为 $d$ 的金属薄片在交变磁场中单位体积的涡流损耗功率为 $\dfrac{P}{V}=\dfrac{\pi^2f^2B_{\mathrm m}^2d^2}{6\rho}$，式中 $f$ 为频率，$B_{\mathrm m}$ 为磁感应强度的最大值，$\rho$ 为材料的电阻率。
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.4em]
+  \item 某变压器铁芯原来用厚 \qty{0.5}{mm} 的硅钢片叠成，若改用厚 \qty{0.35}{mm} 的同种硅钢片（铁芯总体积和工作条件不变），涡流损耗变为原来的百分之几？
+  \item 飞机上常用频率为 \qty{400}{Hz} 的交流电源。若把工作在 \qty{50}{Hz} 的变压器铁芯直接用于 \qty{400}{Hz}（$B_{\mathrm m}$ 不变），涡流损耗变为原来的多少倍？为使涡流损耗保持不变，硅钢片的厚度应变为原来的几分之几？
+  \item 有人提出：“为了减小涡流损耗，可以用电阻率很大的绝缘材料（如陶瓷）来做变压器的铁芯。”你认为这种说法是否合理？请说明理由。
+\end{enumerate}
+\liukong{5cm}
+
+\end{enumerate}

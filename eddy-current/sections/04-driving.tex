@@ -1,0 +1,220 @@
+%======================================================================
+%  04 电磁驱动
+%======================================================================
+\section{电磁驱动}
+
+\subsection{实验观察}
+
+\begin{shiyan}[演示实验　转动的磁铁“带动”铝框]
+\noindent\begin{minipage}[c]{0.6\linewidth}
+如图\ref{fig:drive}所示，蹄形磁铁和闭合的矩形铝框都可以绕同一竖直轴转动，铝框处在磁铁两极之间，二者互不接触。
+\begin{itemize}[leftmargin=1.4em,label=\textbullet]
+  \item 转动磁铁，铝框随之\textbf{同向}转动；
+  \item 铝框的转速总比磁铁的转速\textbf{小}；
+  \item 让磁铁停止转动，铝框还要继续转一段时间，然后逐渐停下；
+  \item 把铝框换成同样形状的塑料框，或把铝框剪开一个缺口，转动磁铁时框不会转动。
+\end{itemize}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.37\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.9]
+  % 支架与转轴
+  \draw[line width=1pt] (-1.5,2.75) -- (1.5,2.75);
+  \fill[pattern=north east lines,pattern color=gray] (-1.5,2.75) rectangle (1.5,2.92);
+  \draw[densely dashed,gray] (0,-1.75) -- (0,2.75);
+  \node[font=\scriptsize] at (0.2,2.55) {$O$};
+  \node[font=\scriptsize] at (0.3,-1.7) {$O'$};
+  % 磁铁（U 形，开口向上）
+  \fill[gray!60] (-1.3,-0.35) rectangle (1.3,0.0);
+  \fill[red!60] (-1.3,0.0) rectangle (-0.95,1.95);
+  \fill[blue!50] (0.95,0.0) rectangle (1.3,1.95);
+  \node[white,font=\scriptsize\bfseries] at (-1.125,1.7) {N};
+  \node[white,font=\scriptsize\bfseries] at (1.125,1.7) {S};
+  \draw[line width=1.1pt] (0,-0.35) -- (0,-1.3);
+  \fill[gray!70] (-0.18,-1.45) rectangle (0.18,-1.3);
+  % 铝框（悬挂在上方转轴上）
+  \draw[line width=0.9pt] (0,2.75) -- (0,1.62);
+  \draw[gray!65!black,line width=1.5pt,fill=alu,fill opacity=0.5] (-0.72,0.42) -- (0.62,0.62) -- (0.62,1.62) -- (-0.72,1.42) -- cycle;
+  % 转动方向
+  \draw[Vvel,->,line width=0.8pt] (0,-0.95) ++(200:0.75 and 0.18) arc (200:340:0.75 and 0.18);
+  \node[Vvel,font=\scriptsize] at (1.15,-1.05) {$\omega_1$};
+  \draw[Vvel,->,line width=0.8pt] (0,2.25) ++(200:0.6 and 0.15) arc (200:340:0.6 and 0.15);
+  \node[Vvel,font=\scriptsize] at (0.95,2.1) {$\omega_2$};
+  \node[font=\scriptsize] at (-1.7,1.0) {磁铁};
+  \node[font=\scriptsize] at (1.75,1.0) {铝框};
+  \draw[lbl,gray] (1.5,1.0) -- (0.62,1.15);
+\end{tikzpicture}
+\captionof{figure}{电磁驱动演示（$\omega_2<\omega_1$）}\label{fig:drive}
+\end{minipage}
+\end{shiyan}
+
+\subsection{电磁驱动的概念与原理}
+
+\begin{zhishi}[电磁驱动]
+磁场相对于导体运动（转动或平动）时，导体中产生感应电流，感应电流使导体受到安培力，安培力使导体运动起来，这种作用称为\key{电磁驱动}。
+\end{zhishi}
+
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item \textbf{为什么同向转动？}磁铁转动时，穿过铝框的磁通量发生变化，铝框中产生感应电流。由楞次定律，感应电流的效果总是\textbf{阻碍铝框与磁铁之间的相对运动}，所以安培力使铝框\textbf{跟着}磁铁同向转动——“你转我也转”，以减小二者的相对运动。
+  \item \textbf{为什么转速较小（异步）？}如果铝框与磁铁转速相同，二者相对静止，穿过铝框的磁通量不再变化，铝框中就没有感应电流，也就不受安培力（驱动力）；铝框在摩擦阻力作用下又会慢下来。所以稳定转动时，\textbf{导体的转速总小于磁场的转速}，二者必须存在相对运动。
+  \item \textbf{感应电流的方向不断变化}：铝框与磁铁的相对位置不断改变，穿过铝框的磁通量时而增大、时而减小，所以铝框中的感应电流是\textbf{交变电流}。
+  \item \textbf{能量转化}：外界（如电动机或人手）对磁铁做功 $\to$ 电能 $\to$ 一部分转化为铝框的机械能（用来克服阻力做功），另一部分转化为内能。
+  \item \textbf{磁铁停转后铝框为什么逐渐停下？}磁铁停转后，铝框相对磁铁转动，此时铝框受到的安培力阻碍其转动——这正是\textbf{电磁阻尼}。可见电磁阻尼与电磁驱动只是同一规律在不同情境中的表现。
+\end{enumerate}
+
+\subsection{电磁驱动的应用}
+
+\noindent\textbf{1．感应电动机（异步电动机）}
+
+\noindent\begin{minipage}[c]{0.6\linewidth}
+感应电动机的定子绕组中通入三相交变电流，产生\textbf{旋转磁场}；转子通常做成“鼠笼”形状：许多导体条两端分别用金属环连接起来，构成闭合回路。旋转磁场相对转子转动，转子导体中产生感应电流，受到安培力而跟着旋转磁场转动。由于转子的转速总\textbf{略小于}旋转磁场的转速，所以感应电动机也叫\key{异步电动机}。
+
+它结构简单、坚固耐用、维护方便，在工农业生产和日常生活中（如水泵、风机、机床、洗衣机等）应用十分广泛。
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.37\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.9]
+  % 鼠笼转子
+  \foreach \a in {0,30,...,330}{
+    \pgfmathsetmacro\xs{0.9*cos(\a)}
+    \pgfmathsetmacro\ys{0.25*sin(\a)}
+    \pgfmathtruncatemacro\front{sin(\a)<0}
+    \ifnum\front=1
+      \draw[copper!90!black,line width=1.3pt] (\xs,\ys) -- (\xs,{\ys+2.0});
+    \else
+      \draw[copper!60,line width=1pt] (\xs,\ys) -- (\xs,{\ys+2.0});
+    \fi}
+  \draw[copper!90!black,line width=2.2pt] (0,0) ellipse (0.9 and 0.25);
+  \draw[copper!90!black,line width=2.2pt] (0,2.0) ellipse (0.9 and 0.25);
+  \draw[line width=1.2pt] (0,2.25) -- (0,2.8);
+  \draw[line width=1.2pt] (0,-0.25) -- (0,-0.6);
+  % 旋转磁场示意
+  \draw[Bline,->,line width=0.9pt] (0,1.0) ++(195:1.75 and 0.55) arc (195:345:1.75 and 0.55);
+  \node[Bline,font=\scriptsize,align=center] at (0,0.05) {};
+  \node[Bline,font=\scriptsize] at (1.95,0.35) {旋转磁场 $n_0$};
+  \draw[Vvel,->,line width=0.8pt] (0,2.55) ++(200:0.5 and 0.13) arc (200:340:0.5 and 0.13);
+  \node[Vvel,font=\scriptsize] at (1.05,2.6) {转子 $n<n_0$};
+  \node[font=\scriptsize] at (-1.55,2.05) {端环};
+  \node[font=\scriptsize] at (-1.55,1.15) {导条};
+  \draw[lbl,gray] (-1.3,1.15) -- (-0.88,1.05);
+\end{tikzpicture}
+\captionof{figure}{鼠笼式转子}
+\end{minipage}
+
+\medskip
+\noindent\textbf{2．磁电式车速表}：汽车车速表中的永久磁铁由汽车变速器通过软轴带动旋转，磁铁外面罩着一个可转动的铝罩，铝罩与指针固定在同一转轴上，并由游丝（螺旋弹簧）拉住。磁铁旋转时，铝罩中产生涡流，铝罩在安培力矩作用下跟着转动，转过一定角度后与游丝的弹力矩平衡，指针便指示出车速（见例14）。
+
+\noindent\textbf{3．感应式电能表}：老式电能表中有一个铝盘。电流线圈和电压线圈产生的交变磁场在铝盘中产生涡流，驱动铝盘转动（电磁驱动）；旁边的永久磁铁又对转动的铝盘产生制动作用（电磁阻尼），使铝盘的转速与用电功率成正比，铝盘转过的圈数就反映了消耗的电能。
+
+\noindent\textbf{4．直线感应电机}：把旋转磁场“展开”成沿直线运动的磁场，就能驱动导体板做直线运动，这就是直线感应电机的原理，可用于部分轨道交通车辆、电磁弹射等。
+
+\begin{wulishi}[从“阿拉果圆盘”到“傅科电流”]
+1824年，法国物理学家\key{阿拉果}发现：在转动的铜盘上方悬挂一枚磁针，磁针会跟着铜盘一起转动，但略有滞后。后来人们又发现，反过来转动磁铁也能带动附近的铜盘转动。这类“旋转磁性”现象当时无法解释。1831年\key{法拉第}发现电磁感应现象后，人们才认识到：铜盘与磁针之间的相对运动使铜盘中产生感应电流，感应电流的磁场与磁针相互作用，使磁针跟着转动。法拉第还受此启发制成了世界上第一台发电机——法拉第圆盘发电机。
+
+1855年，法国物理学家\key{傅科}发现：转动的铜盘处在强磁铁两极之间时，转动铜盘所需的力明显增大，同时铜盘会发热。这正是铜盘中涡流的力效应和热效应，所以涡流又叫\key{傅科电流}。
+\end{wulishi}
+
+\subsection{电磁阻尼与电磁驱动的比较}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\sffamily\bfseries\centering\arraybackslash}m{1.8cm} C C}
+\toprule
+& \textbf{电磁阻尼} & \textbf{电磁驱动} \\
+\midrule
+成因 & 导体在磁场中运动（磁场一般不动） & 磁场相对导体运动（导体原来可以静止） \\
+效果 & 安培力阻碍导体的运动 & 安培力使导体跟随磁场运动 \\
+速度关系 & 导体速度减小，最终相对磁场静止（或匀速） & 导体与磁场同向运动，导体速度小于磁场速度 \\
+能量转化 & 导体的机械能 $\to$ 电能 $\to$ 内能 & 驱动磁场的外界能量 $\to$ 电能 $\to$ 导体的机械能和内能 \\
+共同本质 & \multicolumn{2}{c}{都是电磁感应现象；安培力都阻碍导体与磁场间的\textbf{相对运动}（楞次定律）} \\
+\bottomrule
+\end{tabularx}
+\captionof{table}{电磁阻尼与电磁驱动的比较}
+\end{center}
+
+\begin{fangfa}[判断“阻尼”还是“驱动”的一句话方法]
+以\textbf{磁场}为参考系看导体：导体怎样相对磁场运动，安培力就沿相反方向阻碍它。若磁场静止、导体运动，安培力表现为\textbf{阻力}（电磁阻尼）；若导体静止（或较慢）、磁场运动，安培力表现为\textbf{动力}（电磁驱动）。
+\end{fangfa}
+
+\begin{liti}
+（多选）如图\ref{fig:drive}所示，蹄形磁铁和矩形线圈均可绕竖直轴 $OO'$ 转动，从上向下看，当磁铁逆时针转动时\kuohao{BC}
+\xx{线圈将逆时针转动，转速与磁铁相同}%
+{线圈将逆时针转动，转速比磁铁小}%
+{线圈转动时，线圈中将产生大小、方向周期性变化的电流}%
+{线圈将顺时针转动}
+\begin{jiexi}[2cm]
+磁铁逆时针转动，线圈中产生感应电流，由楞次定律，感应电流的效果阻碍线圈与磁铁的相对运动，所以线圈也逆时针转动，D错误；若线圈与磁铁转速相同，二者相对静止，线圈中无感应电流，不受驱动力，所以线圈的转速一定比磁铁小，A错误、B正确；由于线圈与磁铁之间有相对转动，穿过线圈的磁通量周期性地增大、减小，线圈中产生交变电流，C正确。
+\end{jiexi}
+\daan{BC}
+\end{liti}
+
+\begin{liti}[2015·全国卷Ⅰ]
+（多选）1824年，法国科学家阿拉果完成了著名的“圆盘实验”。实验中将一铜圆盘水平放置，在其中心正上方用柔软细线悬挂一枚可以自由旋转的磁针，如图所示。实验中发现，当圆盘在磁针的磁场中绕过圆盘中心的竖直轴旋转时，磁针也随着一起转动起来，但略有滞后。下列说法正确的是\kuohao{AB}
+
+\noindent\begin{minipage}[c]{0.7\linewidth}
+\xx{圆盘上产生了感应电动势}%
+{圆盘内的涡电流产生的磁场导致磁针转动}%
+{在圆盘转动的过程中，磁针的磁场穿过整个圆盘的磁通量发生了变化}%
+{圆盘中的自由电子随圆盘一起运动形成电流，此电流产生的磁场导致磁针转动}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.27\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.85]
+  \draw[line width=1pt] (-0.9,2.1) -- (0.9,2.1);
+  \fill[pattern=north east lines,pattern color=gray] (-0.9,2.1) rectangle (0.9,2.25);
+  \draw[line width=0.4pt] (0,2.1) -- (0,1.15);
+  \fill[red!65] (-0.55,1.12) -- (0,1.04) -- (0,1.2) -- cycle;
+  \fill[blue!55] (0.55,1.12) -- (0,1.04) -- (0,1.2) -- cycle;
+  \fill[copper!60] (0,0) ellipse (1.3 and 0.35);
+  \draw[line width=0.5pt] (0,0) ellipse (1.3 and 0.35);
+  \draw[line width=0.5pt] (-1.3,0) -- (-1.3,-0.1) arc (180:360:1.3 and 0.35) -- (1.3,0);
+  \draw[line width=1.1pt] (0,-0.45) -- (0,-1.0);
+  \draw[Vvel,->,line width=0.8pt] (0,-0.75) ++(200:0.45 and 0.12) arc (200:340:0.45 and 0.12);
+\end{tikzpicture}
+\end{minipage}
+\begin{jiexi}[2.5cm]
+圆盘转动时，可以把圆盘看成由许多沿半径方向的导体组成，它们切割磁针的磁感线，产生感应电动势，A正确；在圆盘中形成的涡电流产生磁场，这个磁场对磁针有力的作用，使磁针跟着圆盘转动，B正确；圆盘是关于转轴对称的，转动过程中磁针的磁场穿过\textbf{整个}圆盘的磁通量不变，产生涡流的是圆盘各\textbf{局部}回路磁通量的变化，C错误；圆盘整体呈电中性，自由电子和正离子一起随圆盘转动，不会形成电流，D错误。
+\end{jiexi}
+\daan{AB}
+\end{liti}
+
+\begin{liti}
+（多选）汽车上常用的磁电式车速表的结构如图所示：永久磁铁与下面的转轴固连，转轴由汽车变速器通过软轴带动；磁铁外面罩着铝罩，铝罩与上面的转轴、指针固连，并由游丝拉住，上、下转轴彼此不相连。汽车行驶时永久磁铁随转轴转动。下列说法正确的是\kuohao{AB}
+
+\noindent\begin{minipage}[c]{0.68\linewidth}
+\xx{铝罩中产生涡流，铝罩受到安培力矩而与磁铁同方向偏转，转过一定角度后与游丝的弹力矩平衡}%
+{车速越大，磁铁转速越大，铝罩受到的电磁力矩越大，指针偏角越大}%
+{汽车匀速行驶时，铝罩最终将与磁铁以相同的转速一起转动}%
+{若把铝罩换成同样形状的塑料罩，车速表仍能正常工作}
+\end{minipage}\hfill
+\noindent\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.82]
+  % 下转轴
+  \draw[line width=1.2pt] (0,-1.8) -- (0,-0.5);
+  \node[font=\scriptsize,align=center] at (0.9,-1.55) {接软轴};
+  % 永久磁铁
+  \fill[red!60] (-0.85,-0.5) rectangle (0,-0.12);
+  \fill[blue!50] (0,-0.5) rectangle (0.85,-0.12);
+  \node[white,font=\tiny\bfseries] at (-0.6,-0.31) {N};
+  \node[white,font=\tiny\bfseries] at (0.6,-0.31) {S};
+  % 铝罩（倒扣）
+  \draw[gray!60!black,line width=1.6pt] (-1.12,-0.85) -- (-1.12,0.3) -- (1.12,0.3) -- (1.12,-0.85);
+  % 上转轴、游丝、指针
+  \draw[line width=1.2pt] (0,0.3) -- (0,2.0);
+  \draw[line width=0.5pt,domain=0:1080,samples=150,smooth,variable=\t]
+    plot ({(0.05+0.00032*\t)*cos(\t)},{1.0+0.3*(0.05+0.00032*\t)*sin(\t)});
+  \draw[line width=1pt] (0,2.0) -- (1.25,2.0);
+  \fill (0,2.0) circle (1.6pt);
+  \node[font=\scriptsize] at (-0.95,1.0) {游丝};
+  \node[font=\scriptsize] at (0.55,2.25) {指针};
+  \node[font=\scriptsize] at (-1.55,0.15) {铝罩};
+  \node[font=\scriptsize,align=center] at (-1.55,-1.15) {永久\\磁铁};
+  \draw[lbl,gray] (-1.25,-1.05) -- (-0.6,-0.45);
+\end{tikzpicture}
+\end{minipage}
+\begin{jiexi}[2.5cm]
+磁铁转动时，铝罩相对磁铁转动，铝罩中产生涡流，由楞次定律，安培力矩使铝罩跟着磁铁同方向转动（电磁驱动）；铝罩被游丝拉住，转过一定角度后，电磁力矩与游丝的弹力矩平衡，指针稳定在某一位置，A正确。车速越大，磁铁转速越大，铝罩与磁铁的相对转速越大，涡流越大，电磁力矩越大，平衡时游丝扭转的角度越大，指针偏角越大，B正确。铝罩被游丝拉住，只能偏转一定角度而不能持续转动，C错误。塑料罩中不能产生涡流，不受电磁力矩，车速表不能工作，D错误。
+\end{jiexi}
+\daan{AB}
+\end{liti}

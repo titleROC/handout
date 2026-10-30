@@ -1,0 +1,268 @@
+%======================================================================
+%  preamble.tex —— 讲义公共样式（版式、字体、配色、盒子、题目排版）
+%  用 XeLaTeX 编译；教师版 / 学生版由 \StudentVersion 是否定义来切换
+%======================================================================
+
+%---------------------------- 版本开关 ----------------------------
+\newif\ifteacher
+\ifdefined\StudentVersion \teacherfalse \else \teachertrue \fi
+
+%---------------------------- 版面 ----------------------------
+\usepackage[a4paper,left=2.1cm,right=2.1cm,top=2.5cm,bottom=2.3cm,
+  headheight=16pt,headsep=0.75cm,footskip=0.95cm]{geometry}
+
+%---------------------------- 字体 ----------------------------
+\usepackage[math-style=ISO]{unicode-math}
+\setmainfont{TeX Gyre Termes}
+\setsansfont{TeX Gyre Heros}[Scale=0.92]
+\setmathfont{TeX Gyre Termes Math}
+\setmathfont{TeX Gyre Termes Math}[version=bold,FakeBold=1.6]
+\setCJKmainfont{Noto Serif CJK SC}[ItalicFont={Noto Serif CJK SC}]
+\setCJKsansfont{Noto Sans CJK SC}[BoldFont={Noto Sans CJK SC Bold},ItalicFont={Noto Sans CJK SC}]
+\setCJKmonofont{Noto Sans CJK SC}
+\setCJKfamilyfont{zhkai}{FandolKai-Regular.otf}
+\setCJKfamilyfont{zhfs}{FandolFang-Regular.otf}
+\setCJKfamilyfont{zhhei}{Noto Sans CJK SC}
+\providecommand{\kaishu}{}\renewcommand{\kaishu}{\CJKfamily{zhkai}}
+\providecommand{\fangsong}{}\renewcommand{\fangsong}{\CJKfamily{zhfs}}
+\providecommand{\heiti}{}\renewcommand{\heiti}{\sffamily}
+% 罗马数字、带圈数字、★ 等符号交给中文字体
+\xeCJKDeclareCharClass{CJK}{"2160 -> "217F, "2460 -> "2473, "2605, "2606, "25A0 -> "25FF}
+% 常数 π 用正体；“变化量”Δ 用正体
+\AtBeginDocument{\renewcommand{\pi}{\symup{π}}}
+\newcommand{\dd}{\symup{\Delta}}
+
+%---------------------------- 常用宏包 ----------------------------
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array,booktabs,tabularx,makecell,multirow}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{environ}
+\usepackage{caption}
+\usepackage{pifont}
+\usepackage{fancyhdr}
+\usepackage{siunitx}
+\sisetup{
+  inter-unit-product = \ensuremath{\cdot},
+  per-mode = symbol,
+  mode = match,
+  output-decimal-marker = {.},
+}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,
+  decorations.pathreplacing,patterns,positioning,shapes.geometric,shadings,
+  fadings,intersections,backgrounds,fit}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks,bookmarksnumbered]{hyperref}
+
+%---------------------------- 配色 ----------------------------
+\definecolor{mainblue}{HTML}{1F4E79}
+\definecolor{lightblue}{HTML}{EEF4FB}
+\definecolor{exred}{HTML}{A93226}
+\definecolor{warnorange}{HTML}{C0561A}
+\definecolor{lightorange}{HTML}{FDF3EA}
+\definecolor{extgreen}{HTML}{1E7B4F}
+\definecolor{lightgreen}{HTML}{ECF7F0}
+\definecolor{histbrown}{HTML}{7A5530}
+\definecolor{lightbrown}{HTML}{F8F2EA}
+\definecolor{methodpurple}{HTML}{5B2C83}
+\definecolor{lightpurple}{HTML}{F4EEF9}
+\definecolor{expteal}{HTML}{116A75}
+\definecolor{lightteal}{HTML}{EAF5F6}
+\definecolor{ansred}{HTML}{C0392B}
+\definecolor{gridgray}{HTML}{8A8A8A}
+% 物理作图配色
+\colorlet{Bline}{blue!65!black}      % 磁感线、磁场符号
+\colorlet{Eline}{red!72!black}       % 感生电场线
+\colorlet{Icur}{orange!92!red}       % 感应电流、涡流
+\colorlet{Fforce}{green!45!black}    % 力
+\colorlet{Vvel}{violet!80!black}     % 速度
+\colorlet{metal}{gray!28}            % 一般金属
+\colorlet{alu}{gray!14}              % 铝
+\colorlet{copper}{orange!45!brown!70}% 铜
+\colorlet{ironc}{gray!45}            % 铁芯
+
+%---------------------------- 页眉页脚 ----------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{mainblue}\sffamily 高中物理 · 电磁感应专题}
+\fancyhead[R]{\small\color{mainblue}\sffamily 涡流、电磁阻尼和电磁驱动
+  \ifteacher（教师版）\else（学生版）\fi}
+\fancyfoot[C]{\small\sffamily — \thepage\ —}
+\renewcommand{\headrule}{{\color{mainblue}\hrule height 0.6pt}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\sffamily — \thepage\ —}%
+  \renewcommand{\headrule}{}}
+
+%---------------------------- 标题格式 ----------------------------
+\ctexset{
+  section = {
+    format      = \Large\sffamily\bfseries\color{mainblue}\raggedright,
+    name        = {,、},
+    number      = \chinese{section},
+    aftername   = {},
+    beforeskip  = 2.2ex plus .4ex minus .2ex,
+    afterskip   = 1.2ex plus .2ex,
+    aftertitle  = {\par\nobreak\vspace{-0.9ex}%
+      {\color{mainblue}\rule{\linewidth}{1.1pt}}\par\nobreak\vspace{-0.6ex}},
+  },
+  subsection = {
+    format      = \large\sffamily\bfseries\color{mainblue!88!black}\raggedright,
+    name        = {,．},
+    number      = \arabic{subsection},
+    aftername   = {},
+    beforeskip  = 1.6ex plus .3ex minus .2ex,
+    afterskip   = 0.8ex plus .1ex,
+  },
+  subsubsection = {
+    format      = \normalsize\sffamily\bfseries\raggedright,
+    number      = （\arabic{subsubsection}）,
+    aftername   = {},
+    beforeskip  = 1.0ex plus .2ex,
+    afterskip   = 0.5ex,
+  },
+}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{1}
+\captionsetup{font=small,labelsep=quad,skip=4pt,hypcap=false}
+
+%---------------------------- 列表 ----------------------------
+\setlist{nosep,leftmargin=2em}
+\setlist[enumerate,1]{label=\arabic*．}
+\newlist{steps}{enumerate}{1}
+\setlist[steps]{label=\ding{\numexpr171+\value{stepsi}\relax},leftmargin=1.8em,nosep}
+
+%---------------------------- 行内标签 ----------------------------
+\newcommand{\kd}[1]{{\sffamily\bfseries\color{white}\colorbox{mainblue}{\,#1\,}}}
+\newcommand{\biao}[2][mainblue]{{\sffamily\small\bfseries\color{#1}【#2】}}
+\newcommand{\key}[1]{{\sffamily\bfseries\color{mainblue}#1}}
+\newcommand{\warn}[1]{{\bfseries\color{warnorange}#1}}
+\newcommand{\xing}{{\color{warnorange}★}}
+\newcommand{\note}[1]{{\kaishu #1}}
+
+%---------------------------- 盒子 ----------------------------
+\tcbset{
+  handoutbase/.style={enhanced,breakable,arc=2pt,boxrule=0.6pt,
+    left=7pt,right=7pt,top=6pt,bottom=6pt,
+    before skip=8pt plus 2pt,after skip=8pt plus 2pt,
+    fonttitle=\sffamily\bfseries\small},
+  sidebar/.style 2 args={handoutbase,colback=#2,colframe=#1,
+    boxrule=0pt,leftrule=3pt,arc=0pt,outer arc=0pt,
+    coltitle=#1,colbacktitle=#2,
+    title style={},
+    titlerule=0pt,toptitle=3pt,bottomtitle=0pt},
+}
+% 知识梳理
+\newtcolorbox{zhishi}[1][核心知识]{sidebar={mainblue}{lightblue},title={\ding{43}\ #1}}
+% 易错警示
+\newtcolorbox{yicuo}[1][易错警示]{sidebar={warnorange}{lightorange},title={\ding{115}\ #1}}
+% 拓展提升
+\newtcolorbox{tuozhan}[1][拓展提升]{sidebar={extgreen}{lightgreen},title={★\ #1}}
+% 物理学史
+\newtcolorbox{wulishi}[1][物理学史]{sidebar={histbrown}{lightbrown},title={\ding{46}\ #1}}
+% 方法提炼
+\newtcolorbox{fangfa}[1][方法提炼]{sidebar={methodpurple}{lightpurple},title={\ding{51}\ #1}}
+% 实验探究
+\newtcolorbox{shiyan}[1][实验观察]{sidebar={expteal}{lightteal},title={\ding{96}\ #1}}
+
+% 例题
+\NewTColorBox[auto counter]{liti}{ o }{handoutbase,
+  colback=white,colframe=exred!75!black,boxrule=0.6pt,
+  top=10pt,
+  title={例\,\thetcbcounter\IfValueT{#1}{\hspace{0.7em}{\mdseries\small（#1）}}},
+  attach boxed title to top left={xshift=8pt,yshift=-\tcboxedtitleheight/2},
+  boxed title style={colback=exred!75!black,colframe=exred!75!black,
+    boxrule=0pt,arc=1.5pt,left=5pt,right=5pt,top=1.5pt,bottom=1.5pt},
+}
+
+% 解析（教师版显示；学生版留出空白）
+\newcommand{\jxlabel}[1]{{\sffamily\bfseries\small\color{exred}【#1】}}
+\newcommand{\jxrule}{\par\vspace{3pt}\noindent
+  \tikz\draw[exred!45,dash pattern=on 3pt off 2pt,line width=0.4pt](0,0)--(\linewidth,0);%
+  \par\vspace{1pt}}
+% 学生版留白用不可丢弃的支撑盒：若用纯 \vspace，盒子恰在留白处分页时
+% 剩余部分会被丢弃，连同其中的颜色出栈指令，导致后文颜色错乱
+\NewEnviron{jiexi}[1][2.5cm]{%
+  \ifteacher
+    \jxrule\noindent\jxlabel{解析}\BODY\par
+  \else
+    \par\noindent\rule{0pt}{#1}\par
+  \fi}
+\newcommand{\daan}[1]{\ifteacher\par\noindent\jxlabel{答案}#1\par\fi}
+% 选择题题干末尾的括号：教师版填答案
+\newcommand{\kuohao}[1]{\ifteacher（\,{\color{ansred}\bfseries #1}\,）\else（\qquad）\fi}
+% 填空题：\tk[宽度]{答案}，教师版显示答案，学生版留空
+\newcommand{\tk}[2][4em]{\ifteacher\underline{\makebox[#1]{\color{ansred}\bfseries #2}}%
+  \else\underline{\makebox[#1]{}}\fi}
+% 学生版计算题后的作答留白
+\newcommand{\liukong}[1]{\ifteacher\else\par\vspace{#1}\fi}
+% 判断题：\pd{\dui 或 \cuo}{理由}，教师版给出判断和理由，学生版留空
+\newcommand{\dui}{\ding{51}}
+\newcommand{\cuo}{\ding{55}}
+\newcommand{\pd}[2]{\ifteacher\hfill（\,{\color{ansred}\bfseries #1}\,）\par
+  {\small\kaishu\color{black!78}#2}\else\hfill（\qquad）\fi}
+
+%---------------------------- 选择题选项自动排版 ----------------------------
+\newlength\xxlen
+\newlength\xxmax
+\newcommand{\xxmeasure}[1]{\settowidth\xxlen{#1}\ifdim\xxlen>\xxmax\setlength\xxmax{\xxlen}\fi}
+\newcommand{\xxitem}[2]{\makebox[#1][l]{#2}}
+\newcommand{\xx}[4]{\par\nobreak\vspace{1pt}%
+  \setlength\xxmax{0pt}%
+  \xxmeasure{A．#1}\xxmeasure{B．#2}\xxmeasure{C．#3}\xxmeasure{D．#4}%
+  \ifdim\xxmax<0.23\linewidth
+    \noindent\xxitem{0.25\linewidth}{A．#1}\xxitem{0.25\linewidth}{B．#2}%
+      \xxitem{0.25\linewidth}{C．#3}\xxitem{0.25\linewidth}{D．#4}\par
+  \else\ifdim\xxmax<0.48\linewidth
+    \noindent\xxitem{0.5\linewidth}{A．#1}\xxitem{0.5\linewidth}{B．#2}\par
+    \noindent\xxitem{0.5\linewidth}{C．#3}\xxitem{0.5\linewidth}{D．#4}\par
+  \else
+    {\setlength\parindent{0pt}\hangindent=1.6em\hangafter=1 A．#1\par
+     \hangindent=1.6em\hangafter=1 B．#2\par
+     \hangindent=1.6em\hangafter=1 C．#3\par
+     \hangindent=1.6em\hangafter=1 D．#4\par}%
+  \fi\fi}
+
+%---------------------------- 作图通用样式 ----------------------------
+\tikzset{
+  >={Stealth[length=5pt,width=3.6pt]},
+  every picture/.style={line cap=round,line join=round,font=\small},
+  % 磁场符号：垂直纸面向外 / 向里
+  Bout/.pic={\draw[Bline,line width=0.5pt] (0,0) circle (2.3pt); \fill[Bline] (0,0) circle (0.8pt);},
+  Bin/.pic={\draw[Bline,line width=0.5pt] (-2.1pt,-2.1pt)--(2.1pt,2.1pt) (-2.1pt,2.1pt)--(2.1pt,-2.1pt);},
+  % 电流符号（导线截面）：流出 / 流入纸面
+  Iout/.pic={\draw[Icur,line width=0.5pt,fill=white] (0,0) circle (3pt); \fill[Icur] (0,0) circle (1pt);},
+  Iin/.pic={\draw[Icur,line width=0.5pt,fill=white] (0,0) circle (3pt);
+    \draw[Icur,line width=0.5pt] (-2pt,-2pt)--(2pt,2pt) (-2pt,2pt)--(2pt,-2pt);},
+  % 沿路径中点加箭头
+  midarrow/.style={postaction={decorate},decoration={markings,
+    mark=at position #1 with {\arrow{>}}}},
+  midarrow/.default=0.55,
+  revarrow/.style={postaction={decorate},decoration={markings,
+    mark=at position #1 with {\arrowreversed{>}}}},
+  revarrow/.default=0.55,
+  % 箭头样式
+  vel/.style={->,Vvel,thick},
+  force/.style={->,Fforce,thick},
+  cur/.style={->,Icur,thick},
+  bline/.style={Bline,line width=0.6pt},
+  eline/.style={Eline,line width=0.6pt},
+  ground/.style={pattern=north east lines,pattern color=gray},
+  lbl/.style={font=\footnotesize},
+}
+% 双极脉冲（作电流-时间图用）：pulse(t, t0, 幅度, 宽度)
+\pgfmathdeclarefunction{pulse}{4}{\pgfmathparse{-2*#3*((#1-#2)/#4)*exp(-((#1-#2)/#4)^2)}}
+% 在矩形区域内画磁场符号阵列：\Bfield{out|in}{x0}{y0}{x1}{y1}{dx}{dy}
+\newcommand{\Bfield}[7]{%
+  \pgfmathtruncatemacro\bnx{round((#4-(#2))/(#6))}%
+  \pgfmathtruncatemacro\bny{round((#5-(#3))/(#7))}%
+  \foreach \bi in {0,...,\bnx}{\foreach \bj in {0,...,\bny}{%
+    \pic at ({#2+\bi*(#6)},{#3+\bj*(#7)}) {B#1};}}}
+
+%---------------------------- 其他 ----------------------------
+\setlength{\parindent}{2em}
+\linespread{1.06}
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}

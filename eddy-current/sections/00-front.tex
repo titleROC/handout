@@ -1,0 +1,142 @@
+%======================================================================
+%  00 标题、目录、学习导航、知识框架
+%======================================================================
+\thispagestyle{plain}
+\begin{tcolorbox}[enhanced,colback=mainblue,colframe=mainblue,arc=3pt,boxrule=0pt,
+  left=16pt,right=16pt,top=14pt,bottom=12pt,coltext=white,
+  underlay={\begin{tcbclipinterior}
+    \fill[white,opacity=0.06] ([xshift=-2.6cm,yshift=0.8cm]interior.north east) circle (2.6cm);
+    \fill[white,opacity=0.05] ([xshift=-0.9cm,yshift=-0.5cm]interior.south east) circle (1.7cm);
+    \foreach \r in {0.5,0.8,...,2.0}
+      \draw[white,opacity=0.18,line width=0.5pt] ([xshift=-2.6cm,yshift=-0.2cm]interior.east) circle (\r cm);
+  \end{tcbclipinterior}}]
+{\small\sffamily 高中物理\quad 选择性必修第二册\quad 第二章\ 电磁感应}\par\vspace{8pt}
+{\fontsize{25pt}{32pt}\selectfont\sffamily\bfseries 涡流、电磁阻尼和电磁驱动}\par\vspace{6pt}
+{\large\sffamily —— 涡流及其应用\ 专题讲义}\hfill
+\colorbox{white}{\color{mainblue}\sffamily\bfseries\ \ifteacher 教师版\else 学生版\fi\ }
+\end{tcolorbox}
+
+\ifteacher\else
+\begin{center}
+\sffamily 班级\underline{\hspace{6em}}\qquad 姓名\underline{\hspace{6em}}\qquad 学号\underline{\hspace{5em}}
+\end{center}
+\fi
+
+%------------------------------- 目录 -------------------------------
+\makeatletter
+\begin{tcolorbox}[enhanced,colback=white,colframe=mainblue!35,boxrule=0.5pt,arc=2pt,
+  left=10pt,right=10pt,top=4pt,bottom=4pt,
+  title={\sffamily\bfseries 目\quad 录},coltitle=mainblue,colbacktitle=lightblue,
+  fonttitle=\sffamily\bfseries,halign title=center,toptitle=2pt,bottomtitle=2pt]
+\small
+\begin{multicols}{2}
+\@starttoc{toc}
+\end{multicols}
+\end{tcolorbox}
+\makeatother
+
+%------------------------------- 学习导航 -------------------------------
+\section*{学习导航}
+\addcontentsline{toc}{section}{学习导航}
+
+\begin{zhishi}[课程标准要求]
+通过实验，了解自感现象和涡流现象。能举例说明自感现象和涡流现象在生产生活中的应用。\par
+\hfill {\small\kaishu ——《普通高中物理课程标准（2017年版2020年修订）》选择性必修2}
+\end{zhishi}
+
+\noindent\biao{学习目标}
+\begin{enumerate}[label=\arabic*．,leftmargin=2em]
+  \item \key{物理观念}：知道变化的磁场在周围空间激发感生电场，了解感生电场的特点；理解涡流、电磁阻尼和电磁驱动的成因，能用楞次定律和能量守恒定律解释相关现象。
+  \item \key{科学思维}：能把实际问题抽象为“导体棒”“线框”等模型，综合运用牛顿运动定律、动量定理和能量守恒定律，定量分析电磁阻尼与电磁驱动问题。
+  \item \key{科学探究}：通过阻尼摆、强磁体在金属管中下落、转动磁铁带动铝框等实验，学会用对比实验检验猜想。
+  \item \key{科学态度与责任}：了解电磁炉、真空冶炼炉、金属探测器、涡流制动、感应电动机等技术，辩证认识涡流的利与弊，体会物理学对技术进步与社会发展的推动作用。
+\end{enumerate}
+
+\medskip
+\noindent\biao{考情分析}
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{>{\centering\arraybackslash\sffamily\bfseries}m{1.7cm} Y Y >{\centering\arraybackslash}m{1.6cm}}
+\toprule
+\textbf{考点} & \multicolumn{1}{c}{\textbf{核心内容}} & \multicolumn{1}{c}{\textbf{常考情境}} & \textbf{题型} \\
+\midrule
+感生电场 & 感生电场的产生与特点；感生电动势与动生电动势的区别 & 电子感应加速器；带电粒子在变化磁场中的运动 & 选择题 \\
+涡流 & 涡流的产生条件、方向判断、影响因素；涡流的利用与防止 & 电磁炉、真空冶炼炉、高频焊接、金属探测器、变压器铁芯 & 选择题 \\
+电磁阻尼 & 现象解释；“来拒去留”；能量转化 & 磁电式仪表、强磁体在金属管中下落、阻尼摆、电磁刹车、精密仪器减振 & 选择题\newline 实验题 \\
+电磁驱动 & 现象解释；“异步”特点；能量转化 & 转动磁铁带动铝框、感应电动机、阿拉果圆盘、车速表 & 选择题 \\
+定量综合 & 动力学、动量定理、能量守恒的综合运用 & 电磁刹车、电磁弹射、磁悬浮列车 & 计算题 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\noindent\biao{命题规律}
+\begin{enumerate}[label=（\arabic*）,leftmargin=2.6em]
+  \item 本节内容多以\key{选择题}形式出现，难度中等或中等偏易，重在对现象本质的理解，常与物理学史、STSE（科学·技术·社会·环境）情境结合。例如2015年全国卷Ⅰ（阿拉果圆盘实验）、2017年全国卷Ⅰ（扫描隧道显微镜减振）、2020年全国卷Ⅱ（管道高频焊机）、2023年全国乙卷（强磁体在铝管中下落）等。
+  \item 情境新颖、贴近生活与前沿科技，要求能从陌生情境中抽象出“\key{磁通量变化 → 感应电流（涡流） → 焦耳热 / 安培力}”这一物理链条。
+  \item 电磁阻尼常作为\key{力电综合计算题}的背景，与牛顿运动定律、动量定理、能量守恒结合考查，区分度高。
+\end{enumerate}
+
+%------------------------------- 知识框架 -------------------------------
+\medskip
+\noindent\biao{知识框架}
+\begin{center}
+\begin{tikzpicture}[
+  bx/.style={draw=#1,fill=#1!7,rounded corners=2pt,line width=0.6pt,align=center,
+    font=\small\sffamily,inner sep=3pt},
+  bx/.default=mainblue,
+  lf/.style={draw=gray!55,fill=white,rounded corners=1.5pt,align=left,
+    font=\footnotesize,inner sep=2.5pt},
+  cn/.style={-{Stealth[length=4pt,width=3pt]},gray!65!black,line width=0.5pt},
+]
+% 根
+\node[bx=mainblue,minimum height=1.3cm] (root) {磁通量\\发生变化};
+\node[bx=mainblue,right=5mm of root,minimum height=1.3cm] (em) {电磁感应\\[-1pt]{\scriptsize 楞次定律}\\[-3pt]{\scriptsize 法拉第定律}};
+\draw[cn] (root) -- (em);
+% 一级
+\node[bx=exred,minimum width=1.75cm] (fld) at ($(em.east)+(1.7,2.15)$) {感生电场\\[-1pt]{\scriptsize 涡旋电场}};
+\node[bx=warnorange,minimum width=1.75cm] (edy) at ($(em.east)+(1.7,0.05)$) {涡\quad 流\\[-1pt]{\scriptsize 块状导体中}\\[-3pt]{\scriptsize 的感应电流}};
+\node[bx=methodpurple,minimum width=1.75cm] (law) at ($(em.east)+(1.7,-2.15)$) {共同本质};
+\foreach \n in {fld,edy,law} \draw[cn] (em.east) -- ++(0.35,0) |- (\n.west);
+% 感生电场分支
+\node[lf,right=6mm of fld,text width=8.95cm] (f1) {变化的磁场激发；电场线闭合；对电荷的作用力是产生感生电动势的非静电力\\[1pt]
+\textbf{应用}：电子感应加速器（感生电场加速 + 洛伦兹力提供向心力）};
+\draw[cn] (fld) -- (f1);
+% 涡流分支
+\node[bx=warnorange,font=\footnotesize\sffamily,right=6mm of edy,yshift=0.95cm,minimum width=1.3cm] (heat) {热效应};
+\node[bx=warnorange,font=\footnotesize\sffamily,right=6mm of edy,yshift=0cm,minimum width=1.3cm] (mag) {磁效应};
+\node[bx=warnorange,font=\footnotesize\sffamily,right=6mm of edy,yshift=-0.95cm,minimum width=1.3cm] (frc) {力效应};
+\foreach \n in {heat,mag,frc} \draw[cn] (edy.east) -- ++(0.25,0) |- (\n.west);
+\node[lf,right=4mm of heat,text width=7.05cm] (h1) {\textbf{利用}：真空冶炼炉、电磁炉、高频焊接与淬火\\
+\textbf{防止}：硅钢片叠压铁芯、铁氧体磁芯};
+\node[lf,right=4mm of mag,text width=7.05cm] (m1) {金属探测器、安检门、涡流探伤、地感线圈};
+\node[lf,right=4mm of frc,text width=7.05cm] (r1) {\textbf{电磁阻尼}（导体动）：仪表阻尼、电磁刹车、减振\\
+\textbf{电磁驱动}（磁场动）：感应电动机、车速表};
+\draw[cn] (heat) -- (h1); \draw[cn] (mag) -- (m1); \draw[cn] (frc) -- (r1);
+% 本质
+\node[lf,right=6mm of law,text width=8.95cm] (l1) {楞次定律：感应电流的效果总是\textbf{阻碍}引起它的原因（阻碍磁通量变化、阻碍相对运动）\\[1pt]
+能量守恒：其他形式的能 $\to$ 电能 $\to$ 内能（焦耳热）或机械能};
+\draw[cn] (law) -- (l1);
+\end{tikzpicture}
+\end{center}
+
+%------------------------------- 知识回顾 -------------------------------
+\begin{zhishi}[知识回顾（课前预习）]
+\small
+\begin{tabularx}{\linewidth}{>{\sffamily\bfseries}m{3.3cm} Y}
+磁通量 & $\Phi=BS_{\perp}$（$S_{\perp}$ 为垂直于磁场方向的面积），单位：韦伯（Wb） \\
+感应电流产生条件 & 穿过\textbf{闭合}导体回路的\textbf{磁通量发生变化} \\
+楞次定律 & 感应电流的磁场总要阻碍引起感应电流的磁通量的变化；推广：感应电流的效果总要阻碍引起感应电流的原因 \\
+法拉第电磁感应定律 & $E=n\dfrac{\dd\Phi}{\dd t}$；导体棒垂直切割磁感线：$E=Blv$ \\
+安培力 & $F=BIl$（$B\perp I$），方向由左手定则判断 \\
+三个定则 & 安培定则：电流 $\to$ 磁场方向；左手定则：通电导线的受力方向；右手定则：切割磁感线时感应电流的方向 \\
+\end{tabularx}
+\end{zhishi}
+
+\noindent\biao{预习自测}
+\begin{enumerate}[label=\arabic*．,leftmargin=2em,itemsep=3pt]
+  \item 把整块金属放在变化的磁场中，金属内部\tk{会}（选填“会”或“不会”）产生感应电流，这种电流叫作\tk{涡流}。
+  \item 导体在磁场中运动时，导体中的感应电流使导体受到安培力，安培力总是\tk[5em]{阻碍}导体的运动，这种现象叫作\tk[5em]{电磁阻尼}。
+  \item 电磁炉工作时，真正发热的是\tk[5em]{锅底}（选填“线圈”“面板”或“锅底”）；变压器铁芯用相互绝缘的硅钢片叠成，是为了\tk[7em]{减小涡流}。
+\end{enumerate}
+
+\clearpage
